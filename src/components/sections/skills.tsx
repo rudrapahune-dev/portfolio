@@ -41,15 +41,12 @@ export function Skills() {
   };
 
   return (
-    <section id="skills" className="section-padding relative">
-      {/* Subtle background accent */}
-      <div className="absolute inset-0 dot-pattern opacity-20 pointer-events-none" />
-
+    <section id="skills" className="section-padding relative border-t border-border/40">
       <div className="container-wide relative">
         <SectionHeading
-          label="Skills"
+          label="Toolbox"
           title="Technologies I Work With"
-          description="Tools and technologies I use to bring ideas to life."
+          description="Proven engineering tools and foundational frameworks I use to construct reliable systems."
         />
 
         <motion.div
@@ -63,14 +60,14 @@ export function Skills() {
             <motion.div
               key={category.name}
               variants={itemVariants}
-              className="group p-6 rounded-xl border border-border bg-surface/30 hover:bg-surface/60 hover:border-border/80 transition-all duration-300"
+              className="editorial-card p-6 rounded-2xl group shadow-xs hover:border-accent/80 transition-all duration-300"
             >
               {/* Category header */}
-              <div className="flex items-center gap-3 mb-5">
-                <div className="p-2 rounded-lg bg-gradient-to-br from-cyan-500/10 to-indigo-500/10 text-cyan-400">
+              <div className="flex items-center gap-3 mb-5 pb-3 border-b border-border/60">
+                <div className="p-2.5 rounded-xl bg-accent-muted text-accent">
                   {categoryIcons[category.icon] || <Terminal className="w-5 h-5" />}
                 </div>
-                <h3 className="font-heading font-semibold text-foreground text-sm">
+                <h3 className="font-heading font-bold text-foreground text-sm tracking-tight">
                   {category.name}
                 </h3>
               </div>
@@ -80,11 +77,11 @@ export function Skills() {
                 {category.items.map((item) => (
                   <motion.div
                     key={item.name}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border/50 bg-background/50 hover:border-cyan-500/30 hover:bg-cyan-500/5 transition-all duration-200 cursor-default"
+                    whileHover={{ scale: 1.04, y: -2 }}
+                    className="flex items-center gap-2 px-3 py-2 rounded-xl border border-border/80 bg-surface-secondary/40 hover:border-accent/40 hover:bg-surface-secondary text-foreground transition-all duration-200 cursor-default"
                   >
-                    <TechIcon name={item.icon} className="w-4 h-4 text-muted group-hover:text-foreground" />
-                    <span className="text-xs font-medium text-muted">{item.name}</span>
+                    <TechIcon name={item.icon} className="w-4 h-4 text-accent" />
+                    <span className="text-xs font-mono font-medium text-foreground/90">{item.name}</span>
                   </motion.div>
                 ))}
               </div>

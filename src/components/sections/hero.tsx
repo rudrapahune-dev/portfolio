@@ -1,236 +1,207 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Download, ArrowRight, MessageSquare, Terminal, Code2, Braces } from "lucide-react";
+import {
+  ArrowDown,
+  Mail,
+  Github,
+  Linkedin,
+  FileText,
+  MapPin,
+  Sparkles,
+  Terminal,
+} from "lucide-react";
 import { personalInfo } from "@/config/portfolio";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 export function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const heroRef = useRef<HTMLElement>(null);
 
-  // Role cycling
   useEffect(() => {
     const interval = setInterval(() => {
       setRoleIndex((prev) => (prev + 1) % personalInfo.roles.length);
-    }, 3000);
+    }, 3200);
     return () => clearInterval(interval);
-  }, []);
-
-  // Mouse tracking for gradient
-  useEffect(() => {
-    const handleMouse = (e: MouseEvent) => {
-      if (!heroRef.current) return;
-      const rect = heroRef.current.getBoundingClientRect();
-      setMousePos({
-        x: ((e.clientX - rect.left) / rect.width) * 100,
-        y: ((e.clientY - rect.top) / rect.height) * 100,
-      });
-    };
-    window.addEventListener("mousemove", handleMouse);
-    return () => window.removeEventListener("mousemove", handleMouse);
   }, []);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.12, delayChildren: 0.3 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
-    },
-  };
-
   return (
     <section
-      ref={heroRef}
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 overflow-hidden"
     >
-      {/* Background grid */}
-      <div className="absolute inset-0 grid-pattern opacity-40" />
+      {/* Background editorial grid & warm lighting */}
+      <div className="absolute inset-0 editorial-grid opacity-35 pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-accent/5 rounded-full blur-[140px] pointer-events-none" />
 
-      {/* Mouse-following gradient */}
-      <div
-        className="absolute inset-0 opacity-30 transition-opacity duration-500 pointer-events-none"
-        style={{
-          background: `radial-gradient(600px circle at ${mousePos.x}% ${mousePos.y}%, rgba(34, 211, 238, 0.08), transparent 60%)`,
-        }}
-      />
-
-      {/* Floating decorative elements */}
-      <motion.div
-        animate={{ y: [-8, 8, -8] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 right-[10%] hidden lg:block"
-      >
-        <div className="glass rounded-lg px-4 py-3 text-xs font-mono text-muted opacity-40">
-          <div className="flex items-center gap-2 mb-1">
-            <Terminal className="w-3 h-3 text-cyan-400" />
-            <span className="text-cyan-400/60">terminal</span>
-          </div>
-          <span className="text-emerald-400">→</span> npm run dev
-        </div>
-      </motion.div>
-
-      <motion.div
-        animate={{ y: [6, -6, 6] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute bottom-1/3 left-[8%] hidden lg:block"
-      >
-        <div className="glass rounded-lg px-4 py-3 text-xs font-mono text-muted opacity-40">
-          <div className="flex items-center gap-2 mb-1">
-            <Braces className="w-3 h-3 text-indigo-400" />
-            <span className="text-indigo-400/60">api</span>
-          </div>
-          <span className="text-emerald-400">200</span> /api/data
-        </div>
-      </motion.div>
-
-      <motion.div
-        animate={{ y: [-5, 10, -5] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute top-1/3 left-[15%] hidden xl:block"
-      >
-        <div className="glass rounded-lg px-3 py-2 text-xs font-mono text-muted opacity-30">
-          <Code2 className="w-3.5 h-3.5 text-cyan-400/50" />
-        </div>
-      </motion.div>
-
-      {/* Gradient orbs */}
-      <div className="absolute top-1/4 -right-32 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl" />
-
-      {/* Main content */}
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
-      >
-        {/* Availability badge */}
-        {siteConfig.status.available && (
-          <motion.div variants={itemVariants} className="mb-8">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium glass">
+      <div className="container-wide relative z-10 w-full px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          {/* Top meta badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-wrap items-center gap-3 mb-8"
+          >
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface border border-border text-xs font-mono">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
               </span>
-              {siteConfig.status.message}
-            </span>
+              <span className="text-foreground/90 font-medium">{siteConfig.status.message}</span>
+            </div>
+
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface/50 border border-border text-xs text-muted font-mono">
+              <MapPin className="w-3 h-3 text-accent" />
+              <span>Nagpur, India • B.Tech AI & Data Science</span>
+            </div>
           </motion.div>
-        )}
 
-        {/* Intro */}
-        <motion.p
-          variants={itemVariants}
-          className="text-muted text-base sm:text-lg mb-4 font-medium"
-        >
-          Hi, I&apos;m
-        </motion.p>
-
-        {/* Name */}
-        <motion.h1
-          variants={itemVariants}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 tracking-tight"
-        >
-          <span className="gradient-text">{personalInfo.name}</span>
-        </motion.h1>
-
-        {/* Role cycling */}
-        <motion.div variants={itemVariants} className="h-10 sm:h-12 mb-6 flex items-center justify-center">
-          <span className="text-muted text-lg sm:text-xl mr-2">I&apos;m a</span>
-          <div className="relative h-8 sm:h-10 overflow-hidden">
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={roleIndex}
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -30, opacity: 0 }}
-                transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="inline-block text-lg sm:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400"
-              >
-                {personalInfo.roles[roleIndex]}
-              </motion.span>
-            </AnimatePresence>
-          </div>
-        </motion.div>
-
-        {/* Bio */}
-        <motion.p
-          variants={itemVariants}
-          className="text-muted text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed"
-        >
-          {personalInfo.shortBio}
-        </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-wrap items-center justify-center gap-4"
-        >
-          <button
-            onClick={() => scrollTo("projects")}
-            className="group relative px-6 py-3 rounded-lg font-medium text-sm bg-gradient-to-r from-cyan-500 to-indigo-500 text-white hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
+          {/* Intro line */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="font-mono text-sm uppercase tracking-widest text-accent mb-3 font-semibold"
           >
-            <span className="flex items-center gap-2">
-              Explore My Work
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </span>
-          </button>
+            Hi, I&apos;m
+          </motion.p>
 
-          <button
-            onClick={() => scrollTo("contact")}
-            className="group px-6 py-3 rounded-lg font-medium text-sm border border-border text-foreground hover:bg-white/5 hover:border-white/20 transition-all duration-300"
+          {/* Prominent Name */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="text-5xl sm:text-7xl lg:text-8xl font-heading font-extrabold tracking-tight text-foreground leading-[1.05] mb-6"
           >
-            <span className="flex items-center gap-2">
-              <MessageSquare className="w-4 h-4" />
-              Let&apos;s Connect
-            </span>
-          </button>
+            Rudra Pahune<span className="text-accent">.</span>
+          </motion.h1>
 
-          <a
-            href={siteConfig.resume}
-            download
-            className="group px-6 py-3 rounded-lg font-medium text-sm text-muted hover:text-foreground transition-colors"
+          {/* Dynamic Role Line with Reserved Space (Zero Layout Shift) */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex flex-wrap items-center gap-2 text-xl sm:text-2xl font-heading font-semibold text-foreground/80 mb-6"
           >
-            <span className="flex items-center gap-2">
-              <Download className="w-4 h-4" />
-              Resume
-            </span>
-          </a>
-        </motion.div>
-      </motion.div>
+            <span className="text-muted font-normal">Specializing in</span>
+            <div className="relative inline-block h-8 overflow-hidden min-w-[240px]">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={roleIndex}
+                  initial={{ y: 24, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -24, opacity: 0 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute left-0 top-0 text-accent font-bold underline decoration-accent/40 underline-offset-4"
+                >
+                  {personalInfo.roles[roleIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </div>
+          </motion.div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-5 h-8 rounded-full border-2 border-muted/30 flex items-start justify-center p-1"
-        >
-          <motion.div className="w-1 h-2 rounded-full bg-muted/50" />
-        </motion.div>
-      </motion.div>
+          {/* Carefully Crafted Narrative Description */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="space-y-3 mb-10 max-w-2xl"
+          >
+            <p className="text-base sm:text-lg text-foreground/90 leading-relaxed">
+              I&apos;m a developer interested in building intelligent software systems, scalable backend architectures and AI-powered applications.
+            </p>
+            <p className="text-sm sm:text-base text-muted leading-relaxed font-mono">
+              Primary focus: <span className="text-foreground">Backend Development</span>, <span className="text-foreground">Artificial Intelligence</span> & <span className="text-foreground">Full-Stack Engineering</span>.
+            </p>
+          </motion.div>
+
+          {/* 5 CTAs with Real Profile Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-wrap items-center gap-3 pt-2"
+          >
+            {/* 1. Explore My Work */}
+            <button
+              onClick={() => scrollTo("projects")}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-accent text-[#141512] font-semibold text-sm hover:brightness-110 shadow-sm transition-all"
+            >
+              <span>Explore My Work</span>
+              <ArrowDown className="w-4 h-4" />
+            </button>
+
+            {/* 2. Let's Connect */}
+            <button
+              onClick={() => scrollTo("contact")}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-surface border border-border text-foreground font-medium text-sm hover:border-accent hover:bg-surface-secondary transition-all"
+            >
+              <Mail className="w-4 h-4 text-accent" />
+              <span>Let&apos;s Connect</span>
+            </button>
+
+            {/* 3. GitHub Profile */}
+            <a
+              href={siteConfig.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Profile"
+              className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-surface border border-border text-foreground font-medium text-sm hover:border-accent hover:bg-surface-secondary transition-all"
+            >
+              <Github className="w-4 h-4" />
+              <span>GitHub</span>
+            </a>
+
+            {/* 4. LinkedIn Profile */}
+            <a
+              href={siteConfig.links.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn Profile"
+              className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-surface border border-border text-foreground font-medium text-sm hover:border-accent hover:bg-surface-secondary transition-all"
+            >
+              <Linkedin className="w-4 h-4 text-[#0077B5]" />
+              <span>LinkedIn</span>
+            </a>
+
+            {/* 5. Resume */}
+            <a
+              href={siteConfig.resume}
+              download
+              className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-surface/50 border border-border/80 text-muted font-medium text-sm hover:text-foreground hover:border-border transition-all"
+            >
+              <FileText className="w-4 h-4" />
+              <span>Resume</span>
+            </a>
+          </motion.div>
+
+          {/* Interactive terminal quick-bar */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.45 }}
+            className="mt-12 pt-8 border-t border-border/60 flex items-center justify-between text-xs text-muted font-mono"
+          >
+            <div className="flex items-center gap-2">
+              <Terminal className="w-3.5 h-3.5 text-accent" />
+              <span>Press <kbd className="px-1.5 py-0.5 rounded bg-surface border border-border text-foreground font-semibold">Ctrl + K</kbd> to launch Command Palette</span>
+            </div>
+            <button
+              onClick={() => scrollTo("terminal")}
+              className="hidden sm:inline-flex items-center gap-1.5 text-accent hover:underline"
+            >
+              <Sparkles className="w-3 h-3" />
+              <span>Try Interactive Terminal ↓</span>
+            </button>
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 }

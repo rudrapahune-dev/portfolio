@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
-import { Send, Github, Linkedin, Mail, CheckCircle2, Loader2 } from "lucide-react";
+import { Send, Github, Linkedin, Mail, CheckCircle2, Loader2, ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { siteConfig } from "@/config/site";
 
@@ -32,200 +32,212 @@ export function Contact() {
         setTimeout(() => setStatus("idle"), 5000);
       } else {
         setStatus("error");
-        setTimeout(() => setStatus("idle"), 3000);
+        setTimeout(() => setStatus("idle"), 3500);
       }
     } catch {
       setStatus("error");
-      setTimeout(() => setStatus("idle"), 3000);
+      setTimeout(() => setStatus("idle"), 3500);
     }
   };
 
-  const socials = [
-    {
-      name: "GitHub",
-      icon: <Github className="w-5 h-5" />,
-      href: siteConfig.links.github,
-      show: !!siteConfig.links.github && siteConfig.links.github !== "https://github.com/",
-    },
-    {
-      name: "LinkedIn",
-      icon: <Linkedin className="w-5 h-5" />,
-      href: siteConfig.links.linkedin,
-      show: !!siteConfig.links.linkedin && siteConfig.links.linkedin !== "https://linkedin.com/in/",
-    },
-    {
-      name: "Email",
-      icon: <Mail className="w-5 h-5" />,
-      href: siteConfig.links.email,
-      show: !!siteConfig.links.email && siteConfig.links.email !== "mailto:",
-    },
-  ].filter((s) => s.show);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 16 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-  };
-
   return (
-    <section id="contact" className="section-padding relative">
+    <section id="contact" className="section-padding relative border-t border-border/40">
       <div className="container-wide">
         <SectionHeading
-          label="Contact"
-          title="Get in Touch"
-          description="Have a project idea or just want to say hello? I'd love to hear from you."
+          label="Direct Line"
+          title="Let's Connect & Build"
+          description="Interested in collaborating, backend engineering roles, or technical discussions? My inbox is open."
         />
 
-        <div className="grid lg:grid-cols-5 gap-12 max-w-5xl mx-auto">
-          {/* Left - Contact info */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="lg:col-span-2 space-y-6"
-          >
-            <motion.p variants={itemVariants} className="text-muted leading-relaxed">
-              Whether you want to discuss a project, collaboration, or just chat about
-              technology — feel free to reach out.
-            </motion.p>
-
-            {/* Social links */}
-            {socials.length > 0 && (
-              <motion.div variants={itemVariants} className="space-y-3">
-                {socials.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-3 rounded-lg border border-border hover:bg-surface/50 hover:border-cyan-500/20 transition-all group"
-                  >
-                    <span className="text-muted group-hover:text-cyan-400 transition-colors">
-                      {social.icon}
-                    </span>
-                    <span className="text-sm text-foreground">{social.name}</span>
-                  </a>
-                ))}
-              </motion.div>
-            )}
-
-            {socials.length === 0 && (
-              <motion.p variants={itemVariants} className="text-muted text-sm italic">
-                Add your social links in{" "}
-                <code className="text-xs px-1.5 py-0.5 rounded bg-white/5 font-mono">
-                  src/config/site.ts
-                </code>
-              </motion.p>
-            )}
-          </motion.div>
-
-          {/* Right - Contact form */}
-          <motion.form
-            onSubmit={handleSubmit}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="lg:col-span-3 space-y-4"
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="name" className="block text-xs font-medium text-muted mb-1.5">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-lg border border-border bg-surface/50 text-foreground text-sm placeholder:text-muted/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 focus:border-cyan-500/50 transition-all"
-                  placeholder="Your name"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-xs font-medium text-muted mb-1.5">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-lg border border-border bg-surface/50 text-foreground text-sm placeholder:text-muted/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 focus:border-cyan-500/50 transition-all"
-                  placeholder="your@email.com"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="subject" className="block text-xs font-medium text-muted mb-1.5">
-                Subject
-              </label>
-              <input
-                id="subject"
-                type="text"
-                required
-                value={formData.subject}
-                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                className="w-full px-4 py-2.5 rounded-lg border border-border bg-surface/50 text-foreground text-sm placeholder:text-muted/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 focus:border-cyan-500/50 transition-all"
-                placeholder="What's this about?"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="message" className="block text-xs font-medium text-muted mb-1.5">
-                Message
-              </label>
-              <textarea
-                id="message"
-                required
-                rows={5}
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full px-4 py-2.5 rounded-lg border border-border bg-surface/50 text-foreground text-sm placeholder:text-muted/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 focus:border-cyan-500/50 transition-all resize-none"
-                placeholder="Tell me about your project or idea..."
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={status === "sending" || status === "success"}
-              className="w-full sm:w-auto px-8 py-3 rounded-lg font-medium text-sm bg-gradient-to-r from-cyan-500 to-indigo-500 text-white hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-            >
-              {status === "sending" ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  Sending...
-                </>
-              ) : status === "success" ? (
-                <>
-                  <CheckCircle2 className="w-4 h-4" />
-                  Sent!
-                </>
-              ) : (
-                <>
-                  <Send className="w-4 h-4" />
-                  Send Message
-                </>
-              )}
-            </button>
-
-            {status === "error" && (
-              <p className="text-red-400 text-xs">
-                Failed to send. Please try again or reach out directly.
+        <div className="grid lg:grid-cols-12 gap-12 max-w-6xl mx-auto items-start">
+          {/* Left Column: Direct Links & Info (5 cols) */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="space-y-3">
+              <h3 className="text-xl font-heading font-bold text-foreground">
+                Get in Touch Directly
+              </h3>
+              <p className="text-sm text-muted leading-relaxed">
+                Whether you have an inquiry about a project, backend design discussions, or potential opportunities, feel free to reach out via the form or my verified profiles below.
               </p>
-            )}
-          </motion.form>
+            </div>
+
+            {/* Verified Social Connect Cards */}
+            <div className="space-y-3 pt-2">
+              {/* GitHub */}
+              <a
+                href={siteConfig.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="editorial-card flex items-center justify-between p-4 rounded-xl group hover:border-accent transition-all"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-lg bg-surface-secondary text-foreground group-hover:text-accent transition-colors">
+                    <Github className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-foreground">GitHub Profile</h4>
+                    <p className="text-xs font-mono text-muted">@rudrapahune-dev</p>
+                  </div>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-muted group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+              </a>
+
+              {/* LinkedIn */}
+              <a
+                href={siteConfig.links.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="editorial-card flex items-center justify-between p-4 rounded-xl group hover:border-accent transition-all"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-lg bg-surface-secondary text-[#0077B5]">
+                    <Linkedin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-foreground">LinkedIn Connection</h4>
+                    <p className="text-xs font-mono text-muted">Rudra Pahune</p>
+                  </div>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-muted group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+              </a>
+
+              {/* Email Direct */}
+              <a
+                href="mailto:rudrapahune@gmail.com"
+                className="editorial-card flex items-center justify-between p-4 rounded-xl group hover:border-accent transition-all"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-lg bg-surface-secondary text-accent">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-foreground">Direct Email</h4>
+                    <p className="text-xs font-mono text-muted">rudrapahune@gmail.com</p>
+                  </div>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-muted group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+              </a>
+            </div>
+          </div>
+
+          {/* Right Column: Contact Form with Guaranteed High-Contrast Theme Visibility (7 cols) */}
+          <div className="lg:col-span-7">
+            <div className="editorial-card p-6 sm:p-8 rounded-2xl border border-border shadow-lg">
+              <h3 className="text-lg font-heading font-bold text-foreground mb-4">
+                Send a Structured Message
+              </h3>
+
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Name field */}
+                  <div>
+                    <label htmlFor="contact-name" className="block text-xs font-mono font-medium text-foreground mb-1.5">
+                      Your Name <span className="text-accent">*</span>
+                    </label>
+                    <input
+                      id="contact-name"
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      placeholder="e.g. Alex Chen"
+                      className="w-full px-3.5 py-2.5 rounded-xl border text-sm transition-all font-sans"
+                    />
+                  </div>
+
+                  {/* Email field */}
+                  <div>
+                    <label htmlFor="contact-email" className="block text-xs font-mono font-medium text-foreground mb-1.5">
+                      Your Email <span className="text-accent">*</span>
+                    </label>
+                    <input
+                      id="contact-email"
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder="alex@company.com"
+                      className="w-full px-3.5 py-2.5 rounded-xl border text-sm transition-all font-sans"
+                    />
+                  </div>
+                </div>
+
+                {/* Subject field */}
+                <div>
+                  <label htmlFor="contact-subject" className="block text-xs font-mono font-medium text-foreground mb-1.5">
+                    Subject / Discussion Topic <span className="text-accent">*</span>
+                  </label>
+                  <input
+                    id="contact-subject"
+                    type="text"
+                    required
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    placeholder="Project Inquiry / Backend Collaboration"
+                    className="w-full px-3.5 py-2.5 rounded-xl border text-sm transition-all font-sans"
+                  />
+                </div>
+
+                {/* Message field */}
+                <div>
+                  <label htmlFor="contact-message" className="block text-xs font-mono font-medium text-foreground mb-1.5">
+                    Message Body <span className="text-accent">*</span>
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    required
+                    rows={5}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    placeholder="Hello Rudra, I came across your portfolio and wanted to discuss..."
+                    className="w-full px-3.5 py-2.5 rounded-xl border text-sm transition-all resize-none font-sans"
+                  />
+                </div>
+
+                {/* Submit button */}
+                <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <button
+                    type="submit"
+                    disabled={status === "sending" || status === "success"}
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-accent text-[#141512] font-semibold text-sm hover:brightness-110 shadow-sm transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {status === "sending" ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Transmitting Message...</span>
+                      </>
+                    ) : status === "success" ? (
+                      <>
+                        <CheckCircle2 className="w-4 h-4" />
+                        <span>Message Dispatched!</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        <span>Send Message</span>
+                      </>
+                    )}
+                  </button>
+
+                  <span className="text-[11px] font-mono text-muted">
+                    Response time: Usually within 24 hours
+                  </span>
+                </div>
+
+                {status === "success" && (
+                  <div className="p-3 rounded-xl bg-accent-muted border border-accent/30 text-accent text-xs font-mono">
+                    ✓ Your message was validated and recorded successfully.
+                  </div>
+                )}
+
+                {status === "error" && (
+                  <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-mono">
+                    ⚠️ Failed to transmit message. Please send an email directly to rudrapahune@gmail.com.
+                  </div>
+                )}
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </section>

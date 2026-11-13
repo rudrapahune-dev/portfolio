@@ -11,11 +11,13 @@ import {
   Clock,
   Mail,
   Github,
+  Linkedin,
   Bot,
   Download,
   Sun,
   Moon,
   Command,
+  Terminal,
 } from "lucide-react";
 import { useTheme } from "@/providers/theme-provider";
 import { siteConfig } from "@/config/site";
@@ -50,7 +52,7 @@ export function CommandPalette() {
         icon: <Home className="w-4 h-4" />,
         category: "Navigation",
         action: () => scrollTo("home"),
-        keywords: ["hero", "top"],
+        keywords: ["hero", "top", "intro"],
       },
       {
         id: "about",
@@ -58,6 +60,7 @@ export function CommandPalette() {
         icon: <User className="w-4 h-4" />,
         category: "Navigation",
         action: () => scrollTo("about"),
+        keywords: ["bio", "education", "experience"],
       },
       {
         id: "skills",
@@ -65,7 +68,7 @@ export function CommandPalette() {
         icon: <Code2 className="w-4 h-4" />,
         category: "Navigation",
         action: () => scrollTo("skills"),
-        keywords: ["tech", "technologies"],
+        keywords: ["tech", "technologies", "stack", "node", "python", "postgres"],
       },
       {
         id: "projects",
@@ -73,15 +76,31 @@ export function CommandPalette() {
         icon: <Folder className="w-4 h-4" />,
         category: "Navigation",
         action: () => scrollTo("projects"),
-        keywords: ["work", "portfolio"],
+        keywords: ["work", "intervia", "featured"],
+      },
+      {
+        id: "terminal",
+        label: "Launch Interactive Terminal",
+        icon: <Terminal className="w-4 h-4" />,
+        category: "Navigation",
+        action: () => scrollTo("terminal"),
+        keywords: ["shell", "bash", "cli"],
+      },
+      {
+        id: "github-sec",
+        label: "Go to GitHub Activity",
+        icon: <Github className="w-4 h-4" />,
+        category: "Navigation",
+        action: () => scrollTo("github"),
+        keywords: ["repos", "open source", "commits"],
       },
       {
         id: "experience",
-        label: "Go to Experience",
+        label: "Go to Experience Timeline",
         icon: <Clock className="w-4 h-4" />,
         category: "Navigation",
         action: () => scrollTo("experience"),
-        keywords: ["timeline", "journey"],
+        keywords: ["timeline", "journey", "milestones"],
       },
       {
         id: "contact",
@@ -89,15 +108,25 @@ export function CommandPalette() {
         icon: <Mail className="w-4 h-4" />,
         category: "Navigation",
         action: () => scrollTo("contact"),
-        keywords: ["email", "message"],
+        keywords: ["email", "message", "form"],
       },
       {
         id: "github",
-        label: "Open GitHub",
+        label: "Open GitHub Profile (rudrapahune-dev)",
         icon: <Github className="w-4 h-4" />,
-        category: "Links",
+        category: "Direct Profiles",
         action: () => {
           window.open(siteConfig.links.github, "_blank");
+          setIsOpen(false);
+        },
+      },
+      {
+        id: "linkedin",
+        label: "Open LinkedIn Profile (Rudra Pahune)",
+        icon: <Linkedin className="w-4 h-4 text-[#0077B5]" />,
+        category: "Direct Profiles",
+        action: () => {
+          window.open(siteConfig.links.linkedin, "_blank");
           setIsOpen(false);
         },
       },
@@ -105,7 +134,7 @@ export function CommandPalette() {
         id: "resume",
         label: "Download Resume",
         icon: <Download className="w-4 h-4" />,
-        category: "Links",
+        category: "Documents",
         action: () => {
           window.open(siteConfig.resume, "_blank");
           setIsOpen(false);
@@ -114,25 +143,24 @@ export function CommandPalette() {
       {
         id: "theme",
         label: `Switch to ${theme === "dark" ? "Light" : "Dark"} Mode`,
-        icon: theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />,
-        category: "Actions",
+        icon: theme === "dark" ? <Sun className="w-4 h-4 text-accent" /> : <Moon className="w-4 h-4 text-accent" />,
+        category: "Preferences",
         action: () => {
           toggleTheme();
           setIsOpen(false);
         },
-        keywords: ["dark", "light", "mode"],
+        keywords: ["dark", "light", "mode", "toggle"],
       },
       {
         id: "ai",
-        label: "Open AI Assistant",
-        icon: <Bot className="w-4 h-4" />,
-        category: "Actions",
+        label: "Open Personal AI Twin",
+        icon: <Bot className="w-4 h-4 text-accent" />,
+        category: "Intelligence",
         action: () => {
           setIsOpen(false);
-          // Dispatch custom event to open AI chat
           window.dispatchEvent(new CustomEvent("open-ai-chat"));
         },
-        keywords: ["chat", "assistant", "ask"],
+        keywords: ["chat", "assistant", "ask", "ai", "twin"],
       },
     ],
     [theme, toggleTheme]
@@ -149,7 +177,6 @@ export function CommandPalette() {
     );
   }, [query, commands]);
 
-  // Keyboard shortcut
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
@@ -163,7 +190,6 @@ export function CommandPalette() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // Focus input on open
   useEffect(() => {
     if (isOpen) {
       setQuery("");
@@ -172,7 +198,6 @@ export function CommandPalette() {
     }
   }, [isOpen]);
 
-  // Keyboard navigation
   const handleKeyNav = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowDown") {
       e.preventDefault();
@@ -187,7 +212,6 @@ export function CommandPalette() {
     }
   };
 
-  // Group by category
   const grouped = useMemo(() => {
     const groups: Record<string, CommandItem[]> = {};
     filtered.forEach((cmd) => {
@@ -204,11 +228,11 @@ export function CommandPalette() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[200] flex items-start justify-center pt-[20vh]"
+          className="fixed inset-0 z-[300] flex items-start justify-center pt-[15vh] px-4"
         >
           {/* Backdrop */}
           <div
-            className="absolute inset-0 bg-background/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-background/80 backdrop-blur-md"
             onClick={() => setIsOpen(false)}
           />
 
@@ -218,11 +242,11 @@ export function CommandPalette() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.15 }}
-            className="relative w-full max-w-lg mx-4 rounded-xl border border-border bg-surface shadow-2xl shadow-black/30 overflow-hidden"
+            className="relative w-full max-w-xl rounded-2xl border border-border bg-surface text-foreground shadow-2xl overflow-hidden font-sans"
           >
             {/* Search input */}
-            <div className="flex items-center gap-3 px-4 border-b border-border">
-              <Search className="w-4 h-4 text-muted" />
+            <div className="flex items-center gap-3 px-5 border-b border-border bg-surface-secondary/40">
+              <Search className="w-4 h-4 text-accent" />
               <input
                 ref={inputRef}
                 type="text"
@@ -232,44 +256,46 @@ export function CommandPalette() {
                   setSelectedIndex(0);
                 }}
                 onKeyDown={handleKeyNav}
-                placeholder="Type a command or search..."
-                className="flex-1 py-3.5 text-sm bg-transparent text-foreground placeholder:text-muted/50 focus:outline-none"
+                placeholder="Type a command, project, or section..."
+                className="flex-1 py-4 text-sm bg-transparent border-none outline-none font-sans placeholder:text-muted/60"
               />
-              <kbd className="hidden sm:inline-flex px-1.5 py-0.5 rounded text-[10px] font-mono text-muted bg-white/5 border border-border">
+              <kbd className="hidden sm:inline-flex px-2 py-0.5 rounded text-[10px] font-mono text-muted bg-surface border border-border">
                 ESC
               </kbd>
             </div>
 
-            {/* Results */}
-            <div className="max-h-72 overflow-y-auto py-2">
+            {/* Results list */}
+            <div className="max-h-80 overflow-y-auto p-2">
               {filtered.length === 0 ? (
-                <p className="text-center text-muted text-sm py-6">No results found.</p>
+                <p className="text-center text-muted text-sm py-8 font-mono">No matching commands found.</p>
               ) : (
                 Object.entries(grouped).map(([category, items]) => (
-                  <div key={category}>
-                    <p className="px-4 py-1.5 text-[10px] font-medium text-muted uppercase tracking-wider">
+                  <div key={category} className="mb-2">
+                    <p className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider text-muted font-semibold">
                       {category}
                     </p>
                     {items.map((cmd) => {
                       const globalIdx = filtered.indexOf(cmd);
+                      const isSelected = globalIdx === selectedIndex;
                       return (
                         <button
                           key={cmd.id}
                           onClick={cmd.action}
                           onMouseEnter={() => setSelectedIndex(globalIdx)}
                           className={cn(
-                            "flex items-center gap-3 w-full px-4 py-2.5 text-left transition-colors",
-                            globalIdx === selectedIndex
-                              ? "bg-white/5 text-foreground"
+                            "flex items-center gap-3 w-full px-3.5 py-2.5 rounded-xl text-left transition-all",
+                            isSelected
+                              ? "bg-accent-muted text-foreground font-semibold"
                               : "text-muted hover:text-foreground"
                           )}
                         >
-                          <span className={cn(
-                            globalIdx === selectedIndex ? "text-cyan-400" : "text-muted"
-                          )}>
+                          <span className={cn(isSelected ? "text-accent" : "text-muted")}>
                             {cmd.icon}
                           </span>
-                          <span className="text-sm">{cmd.label}</span>
+                          <span className="text-sm flex-1">{cmd.label}</span>
+                          {isSelected && (
+                            <span className="text-[10px] font-mono text-accent">↵ Select</span>
+                          )}
                         </button>
                       );
                     })}
@@ -278,11 +304,11 @@ export function CommandPalette() {
               )}
             </div>
 
-            {/* Footer hint */}
-            <div className="flex items-center justify-between px-4 py-2 border-t border-border text-[10px] text-muted">
-              <span>Navigate with ↑↓ · Select with ↵</span>
-              <span className="flex items-center gap-1">
-                <Command className="w-3 h-3" />K to toggle
+            {/* Footer */}
+            <div className="flex items-center justify-between px-5 py-2.5 border-t border-border bg-surface-secondary/30 text-[11px] font-mono text-muted">
+              <span>Use ↑↓ to navigate · Enter to execute</span>
+              <span className="flex items-center gap-1 text-accent">
+                <Command className="w-3 h-3" />K
               </span>
             </div>
           </motion.div>

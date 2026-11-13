@@ -28,6 +28,7 @@ module.exports = {
         mono: ['var(--font-geist-mono)', 'monospace'],
       },
       animation: {
+        'marquee': 'marquee 32s linear infinite',
         'fade-in': 'fadeIn 0.6s ease-out forwards',
         'slide-up': 'slideUp 0.6s ease-out forwards',
         'slide-down': 'slideDown 0.3s ease-out forwards',
@@ -39,6 +40,10 @@ module.exports = {
         'spin-slow': 'spin 8s linear infinite',
       },
       keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },

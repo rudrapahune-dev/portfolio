@@ -1,8 +1,10 @@
 import { Navbar } from "@/components/ui/navbar";
 import { Hero } from "@/components/sections/hero";
+import { TechMarquee } from "@/components/ui/tech-marquee";
 import { About } from "@/components/sections/about";
 import { Skills } from "@/components/sections/skills";
 import { Projects } from "@/components/sections/projects";
+import { TerminalSection } from "@/components/features/terminal";
 import { Timeline } from "@/components/sections/timeline";
 import { GitHubSection } from "@/components/sections/github";
 import { Contact } from "@/components/sections/contact";
@@ -19,7 +21,7 @@ import { EasterEgg } from "@/components/features/easter-egg";
 export default function Home() {
   return (
     <ToastProvider>
-      <div className="relative min-h-screen bg-background text-foreground selection:bg-cyan-500/20 selection:text-cyan-200">
+      <div className="relative min-h-screen bg-background text-foreground selection:bg-accent selection:text-[#141512]">
         <LoadingScreen />
         <CustomCursor />
         <ScrollProgress />
@@ -28,9 +30,11 @@ export default function Home() {
 
         <main>
           <Hero />
+          <TechMarquee />
           <About />
           <Skills />
           <Projects />
+          <TerminalSection />
           <Timeline />
           <GitHubSection />
           <Contact />

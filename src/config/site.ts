@@ -10,8 +10,8 @@ export const siteConfig = {
   ogImage: "/og.png",
   links: {
     github: "https://github.com/rudrapahune-dev",
-    linkedin: "https://linkedin.com/in/", // Add your LinkedIn
-    email: "mailto:", // Add your email
+    linkedin: "https://www.linkedin.com/in/rudra-pahune-0b1257279/",
+    email: "mailto:rudrapahune@gmail.com", // Configurable
     twitter: "", // Optional
   },
   github: {
