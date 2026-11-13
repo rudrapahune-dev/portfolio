@@ -28,11 +28,14 @@ export function TerminalSection() {
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
   const [expanded, setExpanded] = useState(false);
 
-  const terminalEndRef = useRef<HTMLDivElement>(null);
+  const terminalBodyRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    terminalEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    // Only scroll internally inside the terminal box, never scrolling the browser window
+    if (terminalBodyRef.current && history.length > 1) {
+      terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
+    }
   }, [history]);
 
   const handleCommand = (cmdStr: string) => {
@@ -222,7 +225,7 @@ export function TerminalSection() {
           </div>
 
           {/* Terminal Body */}
-          <div className="flex-1 p-4 overflow-y-auto space-y-3.5 text-xs selection:bg-accent selection:text-[#141512]">
+          <div ref={terminalBodyRef} className="flex-1 p-4 overflow-y-auto space-y-3.5 text-xs selection:bg-accent selection:text-[#141512]">
             {history.map((item, idx) => (
               <div key={idx} className="space-y-1">
                 <div className="flex items-center gap-2 text-muted-foreground">
@@ -245,13 +248,11 @@ export function TerminalSection() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 className="flex-1 bg-transparent text-foreground border-none outline-none font-mono focus:ring-0 p-0 text-xs caret-accent"
-                autoFocus
                 spellCheck={false}
                 autoComplete="off"
               />
               <CornerDownLeft className="w-3 h-3 text-muted/60" />
             </div>
-            <div ref={terminalEndRef} />
           </div>
         </div>
       </div>

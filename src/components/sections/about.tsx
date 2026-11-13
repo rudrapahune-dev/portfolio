@@ -6,27 +6,15 @@ import {
   GraduationCap,
   MapPin,
   Cpu,
-  Bot,
-  Sparkles,
   Server,
-  Brain,
-  Code2,
-  Database,
-  ArrowRight,
   Layers,
   Terminal,
+  Database,
+  Code2,
 } from "lucide-react";
 import { personalInfo } from "@/config/portfolio";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { cn } from "@/lib/utils";
-
-const exploringIcons: Record<string, React.ReactNode> = {
-  Bot: <Bot className="w-5 h-5" />,
-  Sparkles: <Sparkles className="w-5 h-5" />,
-  Server: <Server className="w-5 h-5" />,
-  Brain: <Brain className="w-5 h-5" />,
-  Code2: <Code2 className="w-5 h-5" />,
-};
 
 interface ArchitectureNode {
   id: string;
@@ -36,11 +24,11 @@ interface ArchitectureNode {
 }
 
 const architectureNodes: ArchitectureNode[] = [
-  { id: "client", title: "Client Layer", role: "Next.js & React", tech: "Tailwind • Framer Motion" },
-  { id: "api", title: "REST Backend", role: "Express.js Engine", tech: "Node.js • JWT • OTP Auth" },
-  { id: "orm", title: "Data Layer", role: "Prisma ORM", tech: "Type-safe Schema • Migrations" },
-  { id: "db", title: "Database", role: "PostgreSQL", tech: "Supabase Hosted • ACID" },
-  { id: "ai", title: "AI Intelligence", role: "LLM Orchestration", tech: "AI Agents • Evaluators" },
+  { id: "client", title: "Client Layer", role: "Next.js & React", tech: "Tailwind • TypeScript • Framer Motion" },
+  { id: "api", title: "REST Backend", role: "Express.js Engine", tech: "Node.js • REST APIs • JWT & Auth" },
+  { id: "orm", title: "Data Layer", role: "Prisma ORM", tech: "Type-safe Schema • Migrations • Query Optimization" },
+  { id: "db", title: "Database", role: "PostgreSQL", tech: "Supabase Hosted • ACID Transactions • Relational Integrity" },
+  { id: "ai", title: "AI Intelligence", role: "LLM & Agent Pipelines", tech: "Generative AI • Autonomous Loops • Tool Execution" },
 ];
 
 export function About() {
@@ -57,27 +45,28 @@ export function About() {
 
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Narrative Column - Left (7 cols) */}
-          <div className="lg:col-span-7 space-y-6 text-foreground/90 leading-relaxed text-base sm:text-lg">
+          <div className="lg:col-span-7 space-y-6 text-foreground/90 leading-relaxed text-base sm:text-lg font-sans">
             <p>
-              I have always been obsessed with what happens <span className="text-foreground font-semibold">under the hood</span>. Rather than treating frameworks like black boxes, I enjoy deconstructing how requests flow through an event loop, how relational schemas maintain data integrity under load, and how modern AI models can be woven into deterministic backend systems.
+              I have always been driven by an obsession with what happens <span className="text-foreground font-semibold">under the hood</span>. Rather than treating frameworks or APIs like black boxes, I enjoy deconstructing how requests navigate the event loop, how relational schemas guarantee consistency under load, and how modern AI models can be woven into predictable, resilient backend architectures.
             </p>
 
             <p className="text-muted leading-relaxed">
-              As an AI and Data Science engineering student at <strong className="text-foreground font-semibold">YCCE Nagpur (Class of 2029)</strong>, I bridge the world of rigorous computer science fundamentals—data structures, system design principles, and algorithms—with pragmatic full-stack development.
+              As an AI and Data Science engineering student at <strong className="text-foreground font-semibold">Yeshwantrao Chavan College of Engineering (YCCE), Nagpur</strong> (Class of 2029), I bridge core computer science principles—data structures, system design, and algorithmic efficiency—with modern, pragmatic full-stack execution.
             </p>
 
-            <div className="p-6 rounded-2xl bg-surface border border-border space-y-3 my-6">
+            {/* Architecture Focus Card (replaces the old Intervia box) */}
+            <div className="p-6 rounded-2xl bg-surface border border-border space-y-3 my-6 shadow-xs">
               <div className="flex items-center gap-2 text-accent font-mono text-xs uppercase font-semibold">
                 <Terminal className="w-4 h-4" />
-                <span>The Story of Intervia</span>
+                <span>Engineering Philosophy</span>
               </div>
-              <p className="text-sm text-foreground/90 leading-relaxed">
-                Building <strong className="text-accent font-semibold">Intervia</strong> was a major inflection point. Crafting a full technical interview simulator pushed me to design clean REST endpoints, implement 6-digit OTP email verification flows, integrate LeetCode-style code environments, and orchestrate generative AI prompt pipelines with sub-second feedback loops.
+              <p className="text-sm text-foreground/90 leading-relaxed font-sans">
+                My primary focus revolves around <strong className="text-accent font-semibold">Backend Engineering</strong> and <strong className="text-accent font-semibold">Artificial Intelligence</strong>. I believe that an exceptional user interface is only as reliable as the data layer, caching strategy, and server architecture powering it. Whether designing PostgreSQL schemas or orchestrating LLM prompt pipelines, I prioritize strict type safety, modular boundaries, and clean separation of concerns.
               </p>
             </div>
 
             <p className="text-muted leading-relaxed">
-              When I am not coding, I am usually diving into distributed systems literature, experimenting with autonomous agent loops, or refining my understanding of high-throughput backend APIs.
+              When I am not coding, I spend time studying distributed systems literature, experimenting with autonomous agent execution loops, and continuously sharpening my problem-solving skills across advanced data structures and algorithms.
             </p>
 
             {/* Quick credentials cards */}
@@ -94,7 +83,7 @@ export function About() {
               <div className="p-4 rounded-xl bg-surface/50 border border-border">
                 <div className="flex items-center gap-2 text-xs font-mono text-muted mb-1">
                   <Cpu className="w-4 h-4 text-accent-secondary" />
-                  <span>Core Focus</span>
+                  <span>Technical Focus</span>
                 </div>
                 <h4 className="font-semibold text-sm text-foreground">Backend & Intelligent Systems</h4>
                 <p className="text-xs text-muted mt-1">Node.js, PostgreSQL, AI Agents & System Design</p>
@@ -126,13 +115,13 @@ export function About() {
                       className={cn(
                         "w-full text-left p-3 rounded-xl border transition-all flex items-center justify-between font-mono text-xs",
                         isSelected
-                          ? "bg-accent-muted border-accent text-foreground shadow-sm"
+                          ? "bg-accent-muted border-accent text-foreground shadow-sm font-semibold"
                           : "bg-surface-secondary/40 border-border/80 text-muted hover:text-foreground hover:border-border"
                       )}
                     >
                       <div className="flex items-center gap-2.5">
                         <span className={cn("w-2 h-2 rounded-full", isSelected ? "bg-accent" : "bg-muted-foreground")} />
-                        <span className="font-semibold">{node.title}</span>
+                        <span>{node.title}</span>
                       </div>
                       <span className="text-[11px] opacity-75">{node.role}</span>
                     </button>
@@ -152,46 +141,14 @@ export function About() {
                   <span className="font-mono font-bold text-accent">{activeNode.title}</span>
                   <span className="text-[11px] font-mono text-muted">{activeNode.role}</span>
                 </div>
-                <p className="text-xs text-foreground/80 font-mono">
-                  Technologies: <span className="text-foreground font-semibold">{activeNode.tech}</span>
+                <p className="text-xs text-foreground/90 font-mono">
+                  Stack: <span className="text-foreground font-semibold">{activeNode.tech}</span>
                 </p>
-                <p className="text-[11px] text-muted leading-relaxed">
+                <p className="text-[11px] text-muted leading-relaxed font-sans">
                   Engineered with an emphasis on predictability, strict type boundaries, and resilient error recovery patterns.
                 </p>
               </motion.div>
             </div>
-          </div>
-        </div>
-
-        {/* What I'm Currently Exploring subsection */}
-        <div className="mt-24 pt-12 border-t border-border/60">
-          <div className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <div>
-              <span className="font-mono text-xs text-accent font-semibold tracking-wider uppercase">
-                Active Research & Learning
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mt-1">
-                What I&apos;m Currently Exploring
-              </h3>
-            </div>
-            <p className="text-xs sm:text-sm text-muted font-mono max-w-md">
-              Technologies and paradigms I am actively investigating in personal projects and coursework.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {personalInfo.currentlyExploring.map((item) => (
-              <div
-                key={item.title}
-                className="editorial-card p-5 rounded-2xl group hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="p-2.5 rounded-xl bg-accent-muted text-accent w-fit mb-4 group-hover:scale-110 transition-transform">
-                  {exploringIcons[item.icon] || <Code2 className="w-5 h-5" />}
-                </div>
-                <h4 className="font-heading font-bold text-sm text-foreground mb-1.5">{item.title}</h4>
-                <p className="text-xs text-muted leading-relaxed font-sans">{item.description}</p>
-              </div>
-            ))}
           </div>
         </div>
       </div>

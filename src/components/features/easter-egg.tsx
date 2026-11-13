@@ -2,17 +2,17 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, X } from "lucide-react";
+import { Sparkles, X, Terminal } from "lucide-react";
 
 export function EasterEgg() {
   const [unlocked, setUnlocked] = useState(false);
 
   useEffect(() => {
-    // Secret developer console greeting
+    // Secret developer console greeting matching Warm Editorial identity
     console.log(
-      "%c🚀 Welcome to Rudra Pahune's Portfolio!%c\nBuilt with Next.js, TypeScript, Tailwind CSS & Framer Motion.\nTry the Konami code: ↑ ↑ ↓ ↓ ← → ← → B A",
-      "color: #22d3ee; font-size: 16px; font-weight: bold;",
-      "color: #a1a1aa; font-size: 12px;"
+      "%c✦ Welcome to Rudra Pahune's Portfolio!%c\nBuilt with Next.js, TypeScript, Tailwind CSS & Framer Motion.\nTry the Konami code: ↑ ↑ ↓ ↓ ← → ← → B A",
+      "color: #C5E86C; font-size: 15px; font-weight: bold; font-family: monospace;",
+      "color: #AAA99D; font-size: 12px; font-family: monospace;"
     );
 
     const konamiCode = [
@@ -49,29 +49,35 @@ export function EasterEgg() {
     <AnimatePresence>
       {unlocked && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
+          exit={{ opacity: 0, scale: 0.92 }}
           className="fixed inset-0 z-[350] flex items-center justify-center p-4 bg-background/80 backdrop-blur-md"
         >
-          <div className="relative max-w-md w-full p-6 rounded-2xl glass border border-cyan-500/40 shadow-2xl text-center">
+          <div className="relative max-w-md w-full p-6 sm:p-8 rounded-2xl bg-surface border border-accent/40 shadow-2xl text-center font-sans">
             <button
               onClick={() => setUnlocked(false)}
-              className="absolute top-4 right-4 p-1.5 rounded-lg text-muted hover:text-foreground"
+              className="absolute top-4 right-4 p-2 rounded-lg text-muted hover:text-foreground hover:bg-surface-secondary transition-all"
+              aria-label="Close modal"
             >
               <X className="w-4 h-4" />
             </button>
-            <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-tr from-cyan-400 to-indigo-500 flex items-center justify-center text-white">
-              <Sparkles className="w-6 h-6 animate-spin-slow" />
+            <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-accent-muted text-accent flex items-center justify-center border border-accent/30 shadow-lg shadow-accent/10">
+              <Sparkles className="w-7 h-7" />
+            </div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-muted text-accent text-[11px] font-mono mb-3">
+              <Terminal className="w-3.5 h-3.5" />
+              KONAMI_CODE_UNLOCKED
             </div>
             <h3 className="text-xl font-heading font-bold text-foreground mb-2">
-              🎮 Konami Code Activated!
+              Developer Easter Egg Unlocked
             </h3>
-            <p className="text-sm text-muted mb-4">
-              You found the hidden developer easter egg. You have an eye for details!
+            <p className="text-sm text-muted mb-5 leading-relaxed">
+              You found the hidden keystroke sequence! Thanks for exploring the portfolio so thoroughly.
             </p>
-            <div className="p-3 rounded-lg bg-surface text-xs font-mono text-cyan-400 border border-border">
-              Level: Tech Explorer · Buff: +100 Curiosity
+            <div className="p-3.5 rounded-xl bg-surface-secondary text-xs font-mono text-accent border border-border flex items-center justify-between">
+              <span>EXPLORER_STATUS: VERIFIED</span>
+              <span className="text-secondary-accent font-bold">+100 CURIOSITY</span>
             </div>
           </div>
         </motion.div>

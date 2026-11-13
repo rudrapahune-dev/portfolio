@@ -15,7 +15,23 @@ export function Navbar() {
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    // Reset scroll to top on clean reload if no hash is present
+    if (typeof window !== "undefined") {
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      if (!window.location.hash) {
+        window.scrollTo(0, 0);
+        setActiveSection("home");
+      }
+    }
+
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+      if (window.scrollY < 120 && !window.location.hash) {
+        setActiveSection("home");
+      }
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);

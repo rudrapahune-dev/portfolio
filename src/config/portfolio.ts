@@ -13,45 +13,78 @@ export const personalInfo = {
   headline: "Building Intelligent Systems & Scalable Backends",
   shortBio:
     "B.Tech student in AI & Data Science, passionate about backend architecture, artificial intelligence, and building products that solve real problems.",
-  fullBio: `I'm Rudra Pahune, a B.Tech student in Artificial Intelligence and Data Science at Yeshwantrao Chavan College of Engineering (YCCE), Nagpur. I'm passionate about backend development, AI/ML, and building full-stack applications that are both technically sound and user-friendly.
+  fullBio: `I'm Rudra Pahune, an engineering student pursuing my B.Tech in Artificial Intelligence and Data Science at Yeshwantrao Chavan College of Engineering (YCCE), Nagpur. I am deeply interested in backend architecture, AI/ML, and building full-stack applications that are technically robust, reliable, and well-designed.
 
-I believe in writing clean, maintainable code and building systems that scale. My approach to development is driven by curiosity — I love exploring new technologies and understanding how things work under the hood.
+I believe in writing clean, maintainable code and understanding systems from the ground up. Rather than treating libraries as black boxes, I enjoy deconstructing event loops, relational databases, network protocols, and the mechanics of modern AI integration.
 
-Currently, I'm diving deep into AI agents, generative AI, and advanced backend architectures while strengthening my fundamentals in data structures and algorithms.`,
+Currently, I'm focusing my engineering efforts on autonomous AI agents, generative AI workflows, resilient backend design with Node.js and PostgreSQL, and rigorous data structures and algorithms.`,
   education: {
     degree: "B.Tech in Artificial Intelligence and Data Science",
     institution: "Yeshwantrao Chavan College of Engineering (YCCE)",
     location: "Nagpur, India",
     expectedGraduation: "2029",
   },
-  currentlyExploring: [
-    {
-      title: "AI Agents",
-      description: "Building autonomous AI systems that can reason and act",
-      icon: "Bot" as const,
-    },
-    {
-      title: "Generative AI",
-      description: "Exploring LLMs, prompt engineering, and AI applications",
-      icon: "Sparkles" as const,
-    },
-    {
-      title: "Backend Architecture",
-      description: "Designing scalable and resilient server systems",
-      icon: "Server" as const,
-    },
-    {
-      title: "Machine Learning",
-      description: "Understanding algorithms that learn from data",
-      icon: "Brain" as const,
-    },
-    {
-      title: "Advanced DSA",
-      description: "Mastering data structures and algorithmic problem solving",
-      icon: "Code2" as const,
-    },
-  ],
 };
+
+export interface ExploringItem {
+  title: string;
+  category: string;
+  status: "Building" | "Exploring" | "Learning" | "Improving";
+  description: string;
+  tech: string[];
+  icon: "Server" | "Bot" | "Sparkles" | "Brain" | "Code2" | "Layers";
+}
+
+export const buildingAndExploring: ExploringItem[] = [
+  {
+    title: "Backend Engineering",
+    category: "Architecture & Systems",
+    status: "Building",
+    description: "Designing modular, resilient RESTful micro-architectures with strict transaction boundaries and predictable error handling.",
+    tech: ["Node.js", "Express.js", "PostgreSQL", "Prisma ORM"],
+    icon: "Server",
+  },
+  {
+    title: "AI Agents",
+    category: "Autonomous Intelligence",
+    status: "Exploring",
+    description: "Investigating agentic workflows that decompose complex user intents into verifiable multi-step execution plans.",
+    tech: ["Autonomous Loops", "Tool Calling", "Memory Chains"],
+    icon: "Bot",
+  },
+  {
+    title: "Generative AI",
+    category: "Applied AI",
+    status: "Building",
+    description: "Integrating LLMs into production web applications with structured JSON outputs, streaming responses, and prompt optimization.",
+    tech: ["LLM Orchestration", "Prompt Engineering", "Streaming"],
+    icon: "Sparkles",
+  },
+  {
+    title: "Machine Learning",
+    category: "Core Intelligence",
+    status: "Learning",
+    description: "Studying statistical modeling, feature engineering, and predictive algorithms that derive actionable patterns from complex data.",
+    tech: ["Python", "Supervised Learning", "Data Analysis"],
+    icon: "Brain",
+  },
+  {
+    title: "Advanced DSA",
+    category: "Computer Science",
+    status: "Improving",
+    description: "Strengthening algorithmic foundations across graph traversals, dynamic programming, and asymptotic complexity optimization.",
+    tech: ["Graphs", "Trees", "Dynamic Programming", "Optimization"],
+    icon: "Code2",
+  },
+  {
+    title: "Full-Stack Development",
+    category: "Engineering Craft",
+    status: "Building",
+    description: "Crafting end-to-end applications where modern typed frontends communicate seamlessly with secured backend data services.",
+    tech: ["React", "Next.js", "Tailwind CSS", "TypeScript"],
+    icon: "Layers",
+  },
+];
 
 export const skills = {
   categories: [
@@ -161,8 +194,8 @@ export const projects: Project[] = [
     ],
     status: "In Development",
     featured: true,
-    github: "", // Add GitHub URL
-    live: "", // Add live URL
+    github: "https://github.com/rudrapahune-dev",
+    live: "",
     image: "/projects/intervia.png",
   },
   {
@@ -200,35 +233,35 @@ export const timeline = [
     year: "2025",
     title: "Started B.Tech in AI & Data Science",
     description:
-      "Began my journey at YCCE, Nagpur, diving into the fundamentals of computer science, AI, and data science.",
+      "Began my engineering journey at YCCE, Nagpur, establishing foundational skills in computer science, discrete math, and algorithms.",
     type: "education" as const,
   },
   {
     year: "2025",
-    title: "First Full-Stack Project",
+    title: "First Full-Stack Application",
     description:
-      "Built my first complete web application, learning React, Node.js, and database management.",
+      "Built initial end-to-end web applications, learning component lifecycles, REST communication, and state management.",
     type: "project" as const,
   },
   {
     year: "2025-26",
-    title: "Deep Dive into Backend Development",
+    title: "Deep Dive into Backend Architecture & Databases",
     description:
-      "Focused on mastering Node.js, Express.js, REST APIs, and database architecture with PostgreSQL and Prisma.",
+      "Focused on mastering Node.js, Express.js, REST API design, relational modeling, and database persistence with PostgreSQL and Prisma ORM.",
     type: "learning" as const,
   },
   {
     year: "2026",
-    title: "Building Intervia",
+    title: "Full-Stack AI Integration & Scalable Backends",
     description:
-      "Started developing an AI-powered interview simulation platform, combining full-stack skills with AI integration.",
+      "Architecting multi-tier full-stack applications with robust REST APIs, OTP authentication flows, and real-time generative AI evaluation loops.",
     type: "project" as const,
   },
   {
     year: "2026",
-    title: "Exploring AI & Machine Learning",
+    title: "Exploring AI Agents & Machine Learning",
     description:
-      "Diving into AI agents, generative AI, and machine learning while building practical applications.",
+      "Deepening exploration of autonomous AI agents, LLM orchestration, machine learning techniques, and advanced data structures.",
     type: "learning" as const,
   },
 ];
@@ -237,6 +270,7 @@ export const navItems = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
+  { label: "Focus", href: "#now-building" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },

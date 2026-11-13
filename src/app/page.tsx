@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/hero";
 import { TechMarquee } from "@/components/ui/tech-marquee";
 import { About } from "@/components/sections/about";
 import { Skills } from "@/components/sections/skills";
+import { NowBuilding } from "@/components/sections/now-building";
 import { Projects } from "@/components/sections/projects";
 import { TerminalSection } from "@/components/features/terminal";
 import { Timeline } from "@/components/sections/timeline";
@@ -33,6 +34,7 @@ export default function Home() {
           <TechMarquee />
           <About />
           <Skills />
+          <NowBuilding />
           <Projects />
           <TerminalSection />
           <Timeline />
