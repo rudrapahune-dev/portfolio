@@ -9,13 +9,13 @@ export const siteConfig = {
   url: "https://rudrapahune.dev", // Update with your actual domain
   ogImage: "/og.png",
   links: {
-    github: "https://github.com/", // Add your GitHub username
+    github: "https://github.com/rudrapahune-dev",
     linkedin: "https://linkedin.com/in/", // Add your LinkedIn
     email: "mailto:", // Add your email
     twitter: "", // Optional
   },
   github: {
-    username: "", // Add your GitHub username
+    username: "rudrapahune-dev",
   },
   resume: "/resume.pdf", // Place resume in public/
   status: {
