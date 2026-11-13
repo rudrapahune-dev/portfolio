@@ -7,7 +7,10 @@ export function LoadingScreen() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 2000);
+    // Dismiss after 1.6s
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1600);
     return () => clearTimeout(timer);
   }, []);
 
@@ -18,20 +21,24 @@ export function LoadingScreen() {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-[#141512] text-[#F3F0E7]"
-          exit={{ y: "-100%" }}
-          transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
+          className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-[#141512] text-[#F3F0E7] pointer-events-none select-none"
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          style={{
+            animation: "loaderFadeOut 2.2s ease-in-out forwards",
+          }}
         >
           <div className="flex gap-0.5 items-baseline">
             {letters.map((letter, i) => (
               <motion.span
                 key={i}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 0.35,
-                  delay: 0.2 + i * 0.05,
-                  ease: [0.16, 1, 0.3, 1],
+                  duration: 0.3,
+                  delay: 0.15 + i * 0.04,
+                  ease: "easeOut",
                 }}
                 className={`text-4xl sm:text-6xl font-heading font-extrabold tracking-tight ${
                   letter === " " ? "mr-3" : ""
@@ -40,31 +47,28 @@ export function LoadingScreen() {
                 {letter}
               </motion.span>
             ))}
-            <motion.span
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.9, type: "spring", stiffness: 300 }}
-              className="text-accent text-5xl sm:text-7xl font-black ml-0.5"
-            >
+            <span className="text-accent text-5xl sm:text-7xl font-black ml-0.5">
               .
-            </motion.span>
+            </span>
           </div>
 
-          <motion.div
-            className="mt-6 flex items-center gap-2 text-xs font-mono text-muted tracking-widest uppercase"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-          >
+          <div className="mt-4 flex items-center gap-2 text-xs font-mono text-muted tracking-widest uppercase">
             <span>Backend & AI Systems</span>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="absolute bottom-1/4 left-1/2 h-px bg-gradient-to-r from-transparent via-accent to-transparent"
-            initial={{ width: 0, x: "-50%" }}
-            animate={{ width: "220px" }}
-            transition={{ delay: 1.0, duration: 0.5, ease: "easeOut" }}
-          />
+          <style jsx>{`
+            @keyframes loaderFadeOut {
+              0%, 75% {
+                opacity: 1;
+                visibility: visible;
+              }
+              100% {
+                opacity: 0;
+                visibility: hidden;
+                display: none;
+              }
+            }
+          `}</style>
         </motion.div>
       )}
     </AnimatePresence>
