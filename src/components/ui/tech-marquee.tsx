@@ -36,7 +36,7 @@ export function TechMarquee() {
             className="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-surface/60 border border-border/80 text-foreground/80 hover:text-foreground hover:border-accent/40 transition-colors cursor-default whitespace-nowrap"
           >
             <TechIcon name={tech.icon} className="w-4 h-4 text-accent" />
-            <span className="font-mono text-xs font-medium tracking-tight">
+            <span className="font-mono text-xs sm:text-[13px] font-medium tracking-tight">
               {tech.name}
             </span>
           </div>

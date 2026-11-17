@@ -109,7 +109,7 @@ export function Navbar() {
                     key={item.href}
                     onClick={() => scrollTo(item.href)}
                     className={cn(
-                      "relative px-3.5 py-1.5 text-xs font-mono font-medium transition-all rounded-lg",
+                      "relative px-3.5 py-1.5 text-xs sm:text-[13px] font-mono font-medium transition-all rounded-lg",
                       isActive
                         ? "text-accent bg-accent-muted shadow-xs font-semibold"
                         : "text-muted hover:text-foreground"

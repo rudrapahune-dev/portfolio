@@ -269,6 +269,7 @@ export const timeline = [
 export const navItems = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
+  { label: "Systems", href: "#architecture" },
   { label: "Skills", href: "#skills" },
   { label: "Focus", href: "#now-building" },
   { label: "Projects", href: "#projects" },

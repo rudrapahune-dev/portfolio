@@ -225,7 +225,7 @@ export function TerminalSection() {
           </div>
 
           {/* Terminal Body */}
-          <div ref={terminalBodyRef} className="flex-1 p-4 overflow-y-auto space-y-3.5 text-xs selection:bg-accent selection:text-[#141512]">
+          <div ref={terminalBodyRef} className="flex-1 p-4 sm:p-5 overflow-y-auto space-y-3.5 text-xs sm:text-[13px] selection:bg-accent selection:text-[#141512]">
             {history.map((item, idx) => (
               <div key={idx} className="space-y-1">
                 <div className="flex items-center gap-2 text-muted-foreground">
@@ -239,7 +239,7 @@ export function TerminalSection() {
             ))}
 
             {/* Current Input Line */}
-            <div className="flex items-center gap-2 text-xs">
+            <div className="flex items-center gap-2 text-xs sm:text-[13px]">
               <span className="text-accent font-bold whitespace-nowrap">rudra@portfolio:~$</span>
               <input
                 ref={inputRef}
@@ -247,11 +247,11 @@ export function TerminalSection() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="flex-1 bg-transparent text-foreground border-none outline-none font-mono focus:ring-0 p-0 text-xs caret-accent"
+                className="flex-1 bg-transparent text-foreground border-none outline-none font-mono focus:ring-0 p-0 text-xs sm:text-[13px] caret-accent"
                 spellCheck={false}
                 autoComplete="off"
               />
-              <CornerDownLeft className="w-3 h-3 text-muted/60" />
+              <CornerDownLeft className="w-3.5 h-3.5 text-muted/60" />
             </div>
           </div>
         </div>

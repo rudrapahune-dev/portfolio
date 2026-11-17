@@ -2,6 +2,7 @@ import { Navbar } from "@/components/ui/navbar";
 import { Hero } from "@/components/sections/hero";
 import { TechMarquee } from "@/components/ui/tech-marquee";
 import { About } from "@/components/sections/about";
+import { ArchitectureExplorer } from "@/components/features/architecture-explorer";
 import { Skills } from "@/components/sections/skills";
 import { NowBuilding } from "@/components/sections/now-building";
 import { Projects } from "@/components/sections/projects";
@@ -33,6 +34,7 @@ export default function Home() {
           <Hero />
           <TechMarquee />
           <About />
+          <ArchitectureExplorer />
           <Skills />
           <NowBuilding />
           <Projects />

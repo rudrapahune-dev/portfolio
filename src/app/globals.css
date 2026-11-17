@@ -10,41 +10,45 @@
 
   /* Light theme: Warm ivory & parchment */
   --background: #F5F2E9;
-  --foreground: #22231D;
+  --foreground: #1D1E18;
   --surface: #FFFFFF;
   --surface-secondary: #ECE8DD;
+  --surface-elevated: #FAF8F2;
   --border: #DDD8CB;
   --border-subtle: #E8E4D9;
   --border-focus: #5A7814;
-  --muted: #696B60;
-  --muted-foreground: #8A8B7E;
+  --muted: #57594E;
+  --muted-foreground: #737567;
   --accent: #5A7814;
   --accent-light: #6F921B;
   --accent-secondary: #C87547;
   --accent-muted: rgba(90, 120, 20, 0.12);
+  --accent-glow: rgba(90, 120, 20, 0.2);
   --input-bg: #FFFFFF;
-  --input-text: #22231D;
+  --input-text: #1D1E18;
   --input-border: #D5D0C2;
 }
 
 .dark {
   /* Dark theme: Deep charcoal with warm olive/espresso undertones */
   --background: #141512;
-  --foreground: #F3F0E7;
-  --surface: #1D1E18;
-  --surface-secondary: #262721;
-  --border: #2E3027;
-  --border-subtle: #23251E;
+  --foreground: #F5F2EB;
+  --surface: #1B1C17;
+  --surface-secondary: #23251E;
+  --surface-elevated: #262820;
+  --border: #2F3227;
+  --border-subtle: #24261E;
   --border-focus: #C5E86C;
-  --muted: #AAA99D;
-  --muted-foreground: #7C7A70;
+  --muted: #B3B1A4;
+  --muted-foreground: #8A887B;
   --accent: #C5E86C;
   --accent-light: #D4F285;
   --accent-secondary: #D98B5F;
   --accent-muted: rgba(197, 232, 108, 0.12);
-  --input-bg: #191A14;
-  --input-text: #F3F0E7;
-  --input-border: #35382D;
+  --accent-glow: rgba(197, 232, 108, 0.22);
+  --input-bg: #181914;
+  --input-text: #F5F2EB;
+  --input-border: #383B2E;
 }
 
 /* ========== Base Styles ========== */
@@ -156,9 +160,52 @@ body::before {
   background-size: 48px 48px;
 }
 
+/* Layered blueprint grid with subtle corner crosses */
+.blueprint-grid {
+  background-image:
+    radial-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(to right, var(--border-subtle) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border-subtle) 1px, transparent 1px);
+  background-size: 24px 24px, 96px 96px, 96px 96px;
+}
+
+/* Subtle dot matrix pattern for technical sections */
+.dot-pattern {
+  background-image: radial-gradient(var(--border) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+/* Warm radial lighting variations */
+.radial-ambient-glow {
+  background: radial-gradient(circle at 50% 0%, var(--accent-muted) 0%, transparent 70%);
+}
+
 .editorial-rule {
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
+  background: linear-gradient(90deg, transparent, var(--border) 15%, var(--border) 85%, transparent);
+}
+
+/* Fluid responsive typography targets */
+.fluid-hero-heading {
+  font-size: clamp(2.75rem, 6.5vw, 5.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.fluid-section-heading {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.fluid-body-lead {
+  font-size: clamp(1.0625rem, 1.8vw, 1.25rem);
+  line-height: 1.65;
+}
+
+.fluid-card-description {
+  font-size: clamp(0.9375rem, 1.4vw, 1.0625rem);
+  line-height: 1.6;
 }
 
 /* ========== Contact Form & Input Theme Styling (Bug Fix) ========== */

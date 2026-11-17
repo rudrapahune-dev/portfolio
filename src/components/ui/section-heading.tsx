@@ -20,27 +20,27 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
-        "mb-16 md:mb-20",
+        "mb-14 md:mb-20",
         align === "center" ? "text-center max-w-3xl mx-auto" : "max-w-3xl",
         className
       )}
     >
       <div className={cn("flex items-center gap-2 mb-3.5", align === "center" && "justify-center")}>
-        <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-        <span className="font-mono text-xs uppercase tracking-widest text-accent font-semibold">
+        <span className="w-2 h-2 rounded-full bg-accent" />
+        <span className="font-mono text-xs sm:text-[13px] uppercase tracking-widest text-accent font-semibold">
           {label}
         </span>
       </div>
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-foreground tracking-tight leading-tight mb-4">
+      <h2 className="fluid-section-heading font-heading font-extrabold text-foreground tracking-tight mb-4 text-balance">
         {title}
       </h2>
       {description && (
-        <p className="text-muted text-base sm:text-lg leading-relaxed">
+        <p className="text-muted text-[17px] sm:text-[19px] leading-relaxed max-w-2xl mx-auto font-sans">
           {description}
         </p>
       )}
