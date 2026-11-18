@@ -107,14 +107,18 @@ VERIFIED FACTS:
     // 1. If Gemini API is configured: Call securely passing key in header (not URL query)
     if (geminiKey && geminiKey.trim().length > 0) {
       try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 7000);
+
         const response = await fetch(
-          "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent",
+          "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent",
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
               "x-goog-api-key": geminiKey.trim(),
             },
+            signal: controller.signal,
             body: JSON.stringify({
               contents: [
                 {
@@ -125,6 +129,7 @@ VERIFIED FACTS:
             }),
           }
         );
+        clearTimeout(timeoutId);
 
         if (response.ok) {
           const data = await response.json();
