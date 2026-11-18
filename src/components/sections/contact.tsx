@@ -12,12 +12,15 @@ export function Contact() {
     email: "",
     subject: "",
     message: "",
+    website: "", // Honeypot field for anti-bot protection
   });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [feedbackMessage, setFeedbackMessage] = useState<string>("");
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setStatus("sending");
+    setFeedbackMessage("");
 
     try {
       const res = await fetch("/api/contact", {
@@ -26,17 +29,23 @@ export function Contact() {
         body: JSON.stringify(formData),
       });
 
-      if (res.ok) {
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && data.success) {
         setStatus("success");
-        setFormData({ name: "", email: "", subject: "", message: "" });
-        setTimeout(() => setStatus("idle"), 5000);
+        setFeedbackMessage(data.message || "Your message was delivered successfully to Rudra's inbox!");
+        setFormData({ name: "", email: "", subject: "", message: "", website: "" });
+        setTimeout(() => {
+          setStatus("idle");
+          setFeedbackMessage("");
+        }, 7000);
       } else {
         setStatus("error");
-        setTimeout(() => setStatus("idle"), 3500);
+        setFeedbackMessage(data.error || "Failed to transmit message. Please send an email directly to rudrapahune@gmail.com.");
       }
     } catch {
       setStatus("error");
-      setTimeout(() => setStatus("idle"), 3500);
+      setFeedbackMessage("Network connection error. Please email rudrapahune@gmail.com directly.");
     }
   };
 
@@ -128,6 +137,20 @@ export function Contact() {
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot field for anti-bot protection (hidden from humans, filled by bots) */}
+                <div className="hidden" aria-hidden="true" style={{ display: "none" }}>
+                  <label htmlFor="website-hp">Website</label>
+                  <input
+                    id="website-hp"
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={formData.website}
+                    onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                  />
+                </div>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Name field */}
                   <div>
@@ -225,14 +248,26 @@ export function Contact() {
                 </div>
 
                 {status === "success" && (
-                  <div className="p-3.5 rounded-xl bg-accent-muted border border-accent/30 text-accent text-xs sm:text-[13px] font-mono">
-                    ✓ Your message was validated and recorded successfully.
+                  <div className="p-4 rounded-xl bg-accent-muted border border-accent/40 text-accent text-xs sm:text-[13px] font-mono leading-relaxed flex items-start gap-2.5">
+                    <CheckCircle2 className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold text-foreground">Message Dispatched</p>
+                      <p className="text-muted text-xs mt-0.5">{feedbackMessage}</p>
+                    </div>
                   </div>
                 )}
 
                 {status === "error" && (
-                  <div className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-xs sm:text-[13px] font-mono">
-                    ⚠️ Failed to transmit message. Please send an email directly to rudrapahune@gmail.com.
+                  <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs sm:text-[13px] font-mono leading-relaxed space-y-2">
+                    <p className="font-semibold text-red-300">Notice:</p>
+                    <p className="text-muted text-xs leading-relaxed">{feedbackMessage}</p>
+                    <a
+                      href="mailto:rudrapahune@gmail.com"
+                      className="inline-flex items-center gap-1.5 text-accent hover:underline font-bold text-xs"
+                    >
+                      <Mail className="w-3.5 h-3.5" />
+                      <span>Open email client directly (rudrapahune@gmail.com)</span>
+                    </a>
                   </div>
                 )}
               </form>

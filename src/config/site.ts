@@ -17,7 +17,10 @@ export const siteConfig = {
   github: {
     username: "rudrapahune-dev",
   },
-  resume: "/resume.pdf", // Place resume in public/
+  resume: {
+    url: "/resume.pdf",
+    available: false, // Set to true once public/resume.pdf is added
+  },
   status: {
     available: true,
     message: "Open to opportunities",

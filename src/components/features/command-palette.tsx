@@ -132,11 +132,13 @@ export function CommandPalette() {
       },
       {
         id: "resume",
-        label: "Download Resume",
+        label: siteConfig.resume.available ? "Download Resume (PDF)" : "Resume (PDF Coming Soon)",
         icon: <Download className="w-4 h-4" />,
         category: "Documents",
         action: () => {
-          window.open(siteConfig.resume, "_blank");
+          if (siteConfig.resume.available) {
+            window.open(siteConfig.resume.url, "_blank");
+          }
           setIsOpen(false);
         },
       },

@@ -26,7 +26,11 @@ function checkRateLimit(ip: string): boolean {
 
 export async function POST(req: Request) {
   try {
-    const ip = req.headers.get("x-forwarded-for") || "unknown";
+    // 1. IP extraction for serverless environments (handles Vercel proxy headers)
+    const forwarded = req.headers.get("x-forwarded-for");
+    const realIp = req.headers.get("x-real-ip");
+    const ip = forwarded ? forwarded.split(",")[0].trim() : realIp || "unknown";
+
     if (!checkRateLimit(ip)) {
       return NextResponse.json(
         { error: "Too many messages sent. Please wait a minute before trying again." },
@@ -34,7 +38,14 @@ export async function POST(req: Request) {
       );
     }
 
-    const body = await req.json();
+    const body = await req.json().catch(() => null);
+    if (!body || typeof body !== "object") {
+      return NextResponse.json(
+        { error: "Invalid request payload." },
+        { status: 400 }
+      );
+    }
+
     const { messages } = body;
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
@@ -45,10 +56,18 @@ export async function POST(req: Request) {
     }
 
     const lastMessage = messages[messages.length - 1];
-    const userQuery = String(lastMessage?.content || "").trim().toLowerCase();
+    // Sanitize and constrain user query length (max 1,000 characters)
+    const rawContent = String(lastMessage?.content || "").slice(0, 1000);
+    const userQuery = rawContent.trim().toLowerCase();
+
+    if (!userQuery) {
+      return NextResponse.json(
+        { error: "Message content cannot be empty." },
+        { status: 400 }
+      );
+    }
 
     const geminiKey = process.env.GEMINI_API_KEY;
-    const openaiKey = process.env.OPENAI_API_KEY;
 
     const systemPrompt = `You are "Rudra's AI Assistant", representing Rudra Pahune and his developer portfolio.
 CRITICAL RULES:
@@ -85,19 +104,22 @@ VERIFIED FACTS:
   • LinkedIn: https://www.linkedin.com/in/rudra-pahune-0b1257279/
   • Email: rudrapahune@gmail.com`;
 
-    // 1. If Gemini API is configured
-    if (geminiKey) {
+    // 1. If Gemini API is configured: Call securely passing key in header (not URL query)
+    if (geminiKey && geminiKey.trim().length > 0) {
       try {
         const response = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`,
+          "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent",
           {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+              "Content-Type": "application/json",
+              "x-goog-api-key": geminiKey.trim(),
+            },
             body: JSON.stringify({
               contents: [
                 {
                   role: "user",
-                  parts: [{ text: `${systemPrompt}\n\nUser Question: ${lastMessage.content}` }],
+                  parts: [{ text: `${systemPrompt}\n\nUser Question: ${rawContent}` }],
                 },
               ],
             }),
@@ -107,12 +129,17 @@ VERIFIED FACTS:
         if (response.ok) {
           const data = await response.json();
           const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
-          if (reply) {
-            return NextResponse.json({ response: reply.trim() });
+          if (reply && typeof reply === "string") {
+            return NextResponse.json({
+              response: reply.trim(),
+              provider: "gemini",
+            });
           }
+        } else {
+          console.warn("[Chat Route] Gemini API returned status:", response.status);
         }
       } catch (err) {
-        console.warn("External Gemini API call failed, falling back to local engine:", err);
+        console.warn("[Chat Route] External Gemini API call failed, falling back to local engine:", err);
       }
     }
 

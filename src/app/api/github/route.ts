@@ -6,14 +6,21 @@ export async function GET(req: Request) {
   const type = searchParams.get("type");
   const username = siteConfig.github.username || "rudrapahune-dev";
 
+  // Optional GitHub personal access token for higher API rate limits (5,000 req/hr vs 60 req/hr)
+  const reqHeaders: Record<string, string> = {
+    "User-Agent": "Rudra-Portfolio",
+    Accept: "application/vnd.github.v3+json",
+  };
+  const token = process.env.GITHUB_TOKEN;
+  if (token && token.trim().length > 0) {
+    reqHeaders.Authorization = `Bearer ${token.trim()}`;
+  }
+
   try {
     if (type === "profile") {
       try {
         const res = await fetch(`https://api.github.com/users/${username}`, {
-          headers: {
-            "User-Agent": "Rudra-Portfolio",
-            Accept: "application/vnd.github.v3+json",
-          },
+          headers: reqHeaders,
           next: { revalidate: 1800 },
         });
 
@@ -50,10 +57,7 @@ export async function GET(req: Request) {
         const res = await fetch(
           `https://api.github.com/users/${username}/repos?sort=updated&per_page=6`,
           {
-            headers: {
-              "User-Agent": "Rudra-Portfolio",
-              Accept: "application/vnd.github.v3+json",
-            },
+            headers: reqHeaders,
             next: { revalidate: 1800 },
           }
         );

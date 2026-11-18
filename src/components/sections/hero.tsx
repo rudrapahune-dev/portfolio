@@ -186,15 +186,27 @@ export function Hero() {
                 <span>LinkedIn</span>
               </a>
 
-              {/* 5. Resume */}
-              <a
-                href={siteConfig.resume}
-                download
-                className="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl bg-surface/60 border border-border text-muted font-medium text-sm sm:text-base hover:text-foreground hover:border-accent transition-all min-h-[44px]"
-              >
-                <FileText className="w-4 h-4" />
-                <span>Resume</span>
-              </a>
+              {/* 5. Resume (Only active when actual PDF is provided) */}
+              {siteConfig.resume.available ? (
+                <a
+                  href={siteConfig.resume.url}
+                  download
+                  className="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl bg-surface/60 border border-border text-muted font-medium text-sm sm:text-base hover:text-foreground hover:border-accent transition-all min-h-[44px]"
+                >
+                  <FileText className="w-4 h-4" />
+                  <span>Resume</span>
+                </a>
+              ) : (
+                <span
+                  title="Resume PDF will be made available upon update."
+                  aria-disabled="true"
+                  className="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl bg-surface/30 border border-border/50 text-muted/60 font-medium text-sm sm:text-base cursor-not-allowed select-none min-h-[44px]"
+                >
+                  <FileText className="w-4 h-4 text-muted/50" />
+                  <span>Resume</span>
+                  <span className="text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-surface border border-border/60 text-muted/70">Soon</span>
+                </span>
+              )}
             </motion.div>
 
             {/* Quick Terminal Shortcut */}
