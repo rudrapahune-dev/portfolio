@@ -55,7 +55,7 @@ export function CustomCursor() {
     <>
       {/* Precision center dot */}
       <motion.div
-        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full pointer-events-none z-[9999] bg-accent"
+        className="fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none z-[9999] bg-foreground"
         style={{
           x: cursorX,
           y: cursorY,
@@ -66,7 +66,7 @@ export function CustomCursor() {
       />
       {/* Subtle outer halo */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9998] rounded-full border border-accent/40"
+        className="fixed top-0 left-0 pointer-events-none z-[9998] rounded-full border border-foreground/30"
         style={{
           x: ringX,
           y: ringY,
@@ -75,9 +75,9 @@ export function CustomCursor() {
           opacity: isVisible ? 1 : 0,
         }}
         animate={{
-          width: isPointer ? 38 : 24,
-          height: isPointer ? 38 : 24,
-          borderColor: isPointer ? "rgba(197, 232, 108, 0.7)" : "rgba(197, 232, 108, 0.3)",
+          width: isPointer ? 40 : 26,
+          height: isPointer ? 40 : 26,
+          borderColor: isPointer ? "rgba(8, 8, 8, 0.7)" : "rgba(8, 8, 8, 0.25)",
         }}
         transition={{ type: "spring", stiffness: 350, damping: 25 }}
       />

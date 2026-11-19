@@ -83,20 +83,20 @@ export function GitHubSection() {
   };
 
   return (
-    <section id="github" className="section-padding relative border-t border-border/40">
-      <div className="container-wide">
+    <section id="github" className="section-padding py-20 md:py-28 border-b border-foreground/20">
+      <div className="container-wide max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeading
-          label="Open Source & Repositories"
-          title="GitHub Engineering Activity"
-          description="Public repositories, source code, and verified contributions on GitHub."
+          number="06"
+          title="OPEN SOURCE ACTIVITY"
+          description="Public repositories, source code commits, and verified engineering on GitHub."
         />
 
         {/* Profile Card Banner */}
-        <div className="editorial-card rounded-3xl p-6 sm:p-8 lg:p-9 mb-10 max-w-5xl mx-auto shadow-sm">
-          <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 text-center sm:text-left">
+        <div className="editorial-card rounded-2xl p-6 sm:p-8 mb-10 shadow-[4px_4px_0px_#080808]">
+          <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-6 text-center md:text-left">
             <div className="flex flex-col sm:flex-row items-center gap-5">
               {/* Profile Avatar */}
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-border bg-surface-secondary flex-shrink-0 shadow-sm">
+              <div className="relative w-18 h-18 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-foreground bg-background flex-shrink-0 shadow-sm">
                 {profile?.avatar_url ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -105,31 +105,33 @@ export function GitHubSection() {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-surface-secondary">
-                    <Github className="w-8 h-8 text-accent" />
+                  <div className="w-full h-full flex items-center justify-center bg-foreground text-background">
+                    <Github className="w-8 h-8" />
                   </div>
                 )}
               </div>
 
               <div>
-                <div className="flex items-center justify-center sm:justify-start gap-2.5 mb-1.5">
+                <div className="flex items-center justify-center sm:justify-start gap-3 mb-1.5 flex-wrap">
                   <h3 className="font-heading font-black text-2xl sm:text-3xl text-foreground">
                     {profile?.login || "rudrapahune-dev"}
                   </h3>
-                  <span className="editorial-tag text-xs font-semibold">Active Developer</span>
+                  <span className="editorial-tag text-xs font-bold uppercase tracking-wider">
+                    Verified Engineer
+                  </span>
                 </div>
                 <p className="text-sm sm:text-base text-muted font-sans mb-3.5 max-w-md">
-                  {profile?.bio || "Backend Developer & AI Engineering Student building scalable systems."}
+                  {profile?.bio || "Backend Developer & AI Engineering Student building distributed architectures."}
                 </p>
 
                 <div className="flex items-center justify-center sm:justify-start gap-4 text-xs sm:text-sm font-mono text-muted">
                   <span className="flex items-center gap-1.5">
-                    <BookOpen className="w-4 h-4 text-accent" />
+                    <BookOpen className="w-4 h-4 text-foreground" />
                     <strong className="text-foreground">{profile?.public_repos ?? "—"}</strong> Repositories
                   </span>
                   <span>•</span>
                   <span className="flex items-center gap-1.5">
-                    <Users className="w-4 h-4 text-accent" />
+                    <Users className="w-4 h-4 text-foreground" />
                     <strong className="text-foreground">{profile?.followers ?? "—"}</strong> Followers
                   </span>
                 </div>
@@ -141,21 +143,21 @@ export function GitHubSection() {
               <button
                 onClick={handleRefresh}
                 disabled={isRefreshing}
-                className="p-3 rounded-xl border border-border bg-surface-secondary hover:border-accent text-muted hover:text-foreground transition-all min-h-[44px] min-w-[44px] flex items-center justify-center"
+                className="p-3 rounded-full border border-foreground/30 bg-surface hover:bg-foreground hover:text-background text-foreground transition-all min-h-[44px] min-w-[44px] flex items-center justify-center shadow-xs"
                 title="Refresh GitHub Data"
                 aria-label="Refresh GitHub Data"
               >
-                <RotateCw className={`w-4 h-4 ${isRefreshing ? "animate-spin text-accent" : ""}`} />
+                <RotateCw className={`w-4 h-4 ${isRefreshing ? "animate-spin" : ""}`} />
               </button>
 
               <a
                 href={siteConfig.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-accent text-[#141512] font-semibold text-xs sm:text-sm hover:brightness-110 transition-all shadow-sm min-h-[44px]"
+                className="editorial-btn-primary inline-flex items-center gap-2 px-6 py-3 min-h-[44px]"
               >
                 <Github className="w-4 h-4" />
-                <span>Visit GitHub Profile</span>
+                <span>Follow on GitHub</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
@@ -163,16 +165,16 @@ export function GitHubSection() {
         </div>
 
         {/* Repository Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {loading
             ? Array.from({ length: 3 }).map((_, i) => (
                 <div
                   key={i}
-                  className="editorial-card p-6 sm:p-7 rounded-2xl space-y-4 animate-pulse border border-border"
+                  className="editorial-card p-6 rounded-2xl space-y-4 animate-pulse border border-foreground/20"
                 >
-                  <div className="h-4 w-32 bg-border/80 rounded" />
-                  <div className="h-10 w-full bg-border/40 rounded" />
-                  <div className="h-3 w-24 bg-border/60 rounded" />
+                  <div className="h-4 w-32 bg-foreground/15 rounded" />
+                  <div className="h-12 w-full bg-foreground/10 rounded" />
+                  <div className="h-3 w-24 bg-foreground/15 rounded" />
                 </div>
               ))
             : repos.map((repo) => (
@@ -182,13 +184,13 @@ export function GitHubSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ y: -4 }}
-                  className="editorial-card p-6 sm:p-7 rounded-2xl flex flex-col justify-between group shadow-sm transition-all duration-300"
+                  className="editorial-card p-6 sm:p-7 rounded-2xl flex flex-col justify-between group shadow-sm hover:shadow-[4px_4px_0px_#080808] transition-all duration-300"
                 >
                   <div>
                     <div className="flex items-start justify-between gap-3 mb-3">
                       <div className="flex items-center gap-2">
-                        <Code2 className="w-4 h-4 text-accent flex-shrink-0" />
-                        <h4 className="font-heading font-extrabold text-base sm:text-lg text-foreground group-hover:text-accent transition-colors">
+                        <Code2 className="w-4 h-4 text-foreground flex-shrink-0" />
+                        <h4 className="font-heading font-extrabold text-base sm:text-lg text-foreground group-hover:underline">
                           {repo.name}
                         </h4>
                       </div>
@@ -200,24 +202,24 @@ export function GitHubSection() {
                     </p>
                   </div>
 
-                  <div className="pt-3 border-t border-border/50 flex items-center justify-between text-xs sm:text-[13px] font-mono text-muted">
+                  <div className="pt-3 border-t border-foreground/10 flex items-center justify-between text-xs sm:text-[13px] font-mono text-muted">
                     {repo.language && (
                       <span className="flex items-center gap-1.5">
                         <span
                           className="w-2.5 h-2.5 rounded-full"
-                          style={{ backgroundColor: langColors[repo.language] || "#C5E86C" }}
+                          style={{ backgroundColor: langColors[repo.language] || "#080808" }}
                         />
-                        <span className="text-foreground/90 font-medium">{repo.language}</span>
+                        <span className="text-foreground font-medium">{repo.language}</span>
                       </span>
                     )}
 
                     <div className="flex items-center gap-3">
                       <span className="flex items-center gap-1">
-                        <Star className="w-3.5 h-3.5 text-accent" />
+                        <Star className="w-3.5 h-3.5 text-foreground" />
                         <span>{repo.stargazers_count}</span>
                       </span>
                       <span className="flex items-center gap-1">
-                        <GitFork className="w-3.5 h-3.5" />
+                        <GitFork className="w-3.5 h-3.5 text-foreground" />
                         <span>{repo.forks_count}</span>
                       </span>
                     </div>

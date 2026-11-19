@@ -23,22 +23,16 @@ const technologies = [
 
 export function TechMarquee() {
   return (
-    <div className="relative w-full overflow-hidden border-y border-border bg-surface/30 py-4 my-8">
-      {/* Edge gradient fades */}
-      <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10" />
-      <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10" />
-
-      <div className="flex w-max animate-marquee hover:[animation-play-state:paused] motion-reduce:animate-none gap-8 items-center">
-        {/* Double list for seamless looping */}
+    <div className="relative w-full overflow-hidden border-y border-foreground/20 py-3.5 my-6 select-none bg-background">
+      <div className="flex w-max animate-marquee hover:[animation-play-state:paused] motion-reduce:animate-none gap-6 sm:gap-8 items-center">
         {[...technologies, ...technologies].map((tech, idx) => (
           <div
             key={idx}
-            className="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-surface/60 border border-border/80 text-foreground/80 hover:text-foreground hover:border-accent/40 transition-colors cursor-default whitespace-nowrap"
+            className="flex items-center gap-2 text-foreground font-mono text-xs sm:text-sm font-bold tracking-tight whitespace-nowrap"
           >
-            <TechIcon name={tech.icon} className="w-4 h-4 text-accent" />
-            <span className="font-mono text-xs sm:text-[13px] font-medium tracking-tight">
-              {tech.name}
-            </span>
+            <TechIcon name={tech.icon} className="w-3.5 h-3.5 text-foreground/70" />
+            <span>{tech.name}</span>
+            <span className="text-foreground/30 ml-4">•</span>
           </div>
         ))}
       </div>

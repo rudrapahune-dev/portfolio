@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronUp } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 
 export function BackToTop() {
   const [show, setShow] = useState(false);
@@ -21,10 +21,10 @@ export function BackToTop() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 10 }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-6 right-6 z-50 p-3 rounded-full glass hover:bg-white/10 transition-colors group"
+          className="fixed bottom-6 right-36 z-[75] p-3 rounded-full bg-surface border-2 border-foreground text-foreground hover:bg-foreground hover:text-background transition-all shadow-[3px_3px_0px_#080808]"
           aria-label="Back to top"
         >
-          <ChevronUp className="w-5 h-5 text-foreground group-hover:text-cyan-400 transition-colors" />
+          <ArrowUp className="w-4 h-4" />
         </motion.button>
       )}
     </AnimatePresence>

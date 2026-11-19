@@ -249,20 +249,16 @@ export function ArchitectureExplorer() {
   };
 
   return (
-    <section id="architecture" className="section-padding relative border-t border-border/40">
-      {/* Background blueprint grid for depth */}
-      <div className="absolute inset-0 blueprint-grid opacity-25 pointer-events-none" />
-      <div className="absolute top-1/3 right-1/4 w-[500px] h-[300px] bg-accent/5 rounded-full blur-[140px] pointer-events-none" />
-
+    <section id="architecture" className="section-padding relative border-t border-foreground/20">
       <div className="container-wide relative z-10">
         <SectionHeading
-          label="Interactive Sandbox"
-          title="Interactive System Architecture Explorer"
-          description="Explore real-world distributed architectures, latency budgets, and live data packet lifecycles."
+          label="05 / Systems Engineering"
+          title="Architecture & Simulation Explorer"
+          description="Interactive flow traces exploring distributed systems, latency budgets, and packet lifecycles."
         />
 
-        {/* Scenario Switcher Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10 max-w-4xl mx-auto">
+        {/* Scenario Switcher Tabs (Editorial Pills) */}
+        <div className="flex flex-wrap items-center justify-start sm:justify-center gap-2 mb-10">
           {scenarios.map((sc) => {
             const isSelected = sc.id === activeScenarioId;
             return (
@@ -270,17 +266,17 @@ export function ArchitectureExplorer() {
                 key={sc.id}
                 onClick={() => setActiveScenarioId(sc.id)}
                 className={cn(
-                  "px-4 py-2.5 rounded-xl font-mono text-xs sm:text-sm font-medium transition-all flex items-center gap-2 min-h-[44px]",
+                  "px-4 py-2.5 rounded-full font-mono text-xs sm:text-[13px] font-bold transition-all flex items-center gap-2 min-h-[42px] cursor-pointer",
                   isSelected
-                    ? "bg-accent text-[#141512] font-bold shadow-md shadow-accent/15 border border-accent"
-                    : "bg-surface border border-border text-foreground/80 hover:border-accent/40 hover:text-foreground"
+                    ? "bg-foreground text-background shadow-xs border border-foreground"
+                    : "bg-surface border border-foreground/30 text-foreground hover:border-foreground"
                 )}
               >
                 <span>{sc.name}</span>
                 <span
                   className={cn(
-                    "text-[10px] px-2 py-0.5 rounded-full font-mono",
-                    isSelected ? "bg-[#141512]/15 text-[#141512]" : "bg-surface-secondary text-muted"
+                    "text-[10px] px-2 py-0.5 rounded-full font-mono uppercase tracking-wider",
+                    isSelected ? "bg-background text-foreground" : "bg-black/5 text-muted"
                   )}
                 >
                   {sc.badge}
@@ -291,13 +287,13 @@ export function ArchitectureExplorer() {
         </div>
 
         {/* Main Interactive Diagram & Telemetry Studio */}
-        <div className="editorial-card rounded-3xl p-6 sm:p-8 lg:p-10 border border-border bg-surface shadow-2xl relative overflow-hidden">
+        <div className="editorial-card rounded-3xl p-6 sm:p-8 lg:p-10 border border-foreground bg-surface shadow-[4px_4px_0px_#080808] relative overflow-hidden">
           {/* Top Bar: Title + Simulation Trigger */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-border">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-foreground/20">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                <h3 className="font-heading font-extrabold text-xl sm:text-2xl text-foreground">
+                <span className="w-2 h-2 rounded-full bg-foreground animate-pulse" />
+                <h3 className="font-heading font-black text-2xl sm:text-3xl text-foreground">
                   {scenario.name}
                 </h3>
               </div>
@@ -311,10 +307,10 @@ export function ArchitectureExplorer() {
                 onClick={runSimulation}
                 disabled={isSimulating}
                 className={cn(
-                  "inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-mono text-xs sm:text-sm font-bold transition-all min-h-[42px]",
+                  "inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-mono text-xs sm:text-sm font-bold transition-all min-h-[42px] cursor-pointer",
                   isSimulating
-                    ? "bg-accent/40 text-[#141512] cursor-wait"
-                    : "bg-accent text-[#141512] hover:brightness-110 shadow-sm"
+                    ? "bg-foreground/40 text-background cursor-wait"
+                    : "bg-foreground text-background hover:opacity-85 shadow-xs"
                 )}
               >
                 <Play className="w-3.5 h-3.5 fill-current" />

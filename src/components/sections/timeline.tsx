@@ -1,108 +1,82 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Rocket, BookOpen, Layers } from "lucide-react";
+import { GraduationCap, Rocket, BookOpen, ArrowUpRight } from "lucide-react";
 import { timeline } from "@/config/portfolio";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { cn } from "@/lib/utils";
 
 const typeConfig = {
   education: {
-    icon: <GraduationCap className="w-4 h-4" />,
-    color: "text-accent",
-    bg: "bg-accent-muted border-accent/30",
-    dot: "bg-accent ring-4 ring-accent/20",
+    icon: <GraduationCap className="w-3.5 h-3.5" />,
+    label: "Education",
   },
   project: {
-    icon: <Rocket className="w-4 h-4" />,
-    color: "text-accent-secondary",
-    bg: "bg-[#D98B5F]/15 border-[#D98B5F]/30",
-    dot: "bg-accent-secondary ring-4 ring-accent-secondary/20",
+    icon: <Rocket className="w-3.5 h-3.5" />,
+    label: "Architecture",
   },
   learning: {
-    icon: <BookOpen className="w-4 h-4" />,
-    color: "text-blue-400",
-    bg: "bg-blue-500/10 border-blue-500/20",
-    dot: "bg-blue-400 ring-4 ring-blue-500/20",
+    icon: <BookOpen className="w-3.5 h-3.5" />,
+    label: "Deep Dive",
   },
 };
 
 export function Timeline() {
   return (
-    <section id="experience" className="section-padding relative border-t border-border/40">
-      <div className="container-wide">
+    <section id="experience" className="section-padding py-20 md:py-28 border-b border-foreground/20">
+      <div className="container-wide max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeading
-          label="Milestones"
-          title="Engineering & Learning Timeline"
+          number="05"
+          title="EXPERIENCE & MILESTONES"
           description="A chronological record of foundations built, architectures explored, and systems created."
         />
 
-        <div className="relative max-w-4xl mx-auto">
-          {/* Vertical line with subtle gradient */}
-          <div className="absolute left-4 md:left-1/2 top-4 bottom-4 w-[2px] bg-gradient-to-b from-transparent via-border to-transparent md:-translate-x-1/2" />
+        {/* Editorial Horizontal-Ruled Timeline Table */}
+        <div className="border-t border-foreground/20">
+          {timeline.map((item, i) => {
+            const config = typeConfig[item.type];
 
-          <div className="space-y-10">
-            {timeline.map((item, i) => {
-              const config = typeConfig[item.type];
-              const isLeft = i % 2 === 0;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="group border-b border-foreground/20 py-8 sm:py-10 transition-colors duration-200 hover:bg-black/[0.02] dark:hover:bg-white/[0.02]"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start">
+                  {/* Left: Year & Category pill (3 cols) */}
+                  <div className="md:col-span-3 space-y-2">
+                    <span className="font-mono text-2xl sm:text-3xl font-black text-foreground tracking-tight block">
+                      {item.year}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-foreground text-background">
+                      {config.icon}
+                      <span>{config.label}</span>
+                    </span>
+                  </div>
 
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: i * 0.06 }}
-                  className={cn(
-                    "relative flex items-start",
-                    "pl-12 md:pl-0",
-                    "md:justify-start",
-                    !isLeft && "md:justify-end"
-                  )}
-                >
-                  {/* Central Node marker */}
-                  <div
-                    className={cn(
-                      "absolute left-4 md:left-1/2 top-4 w-4 h-4 rounded-full border-2 border-background z-10 -translate-x-1/2 transition-transform",
-                      config.dot
-                    )}
-                  />
-
-                  {/* Timeline Card */}
-                  <div
-                    className={cn(
-                      "w-full md:w-[calc(50%-2.5rem)] editorial-card p-6 sm:p-7 rounded-2xl shadow-sm group hover:border-accent transition-all duration-300",
-                      isLeft ? "md:mr-auto" : "md:ml-auto"
-                    )}
-                  >
-                    <div className="flex items-center justify-between gap-2 mb-3">
-                      <span
-                        className={cn(
-                          "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold border",
-                          config.bg,
-                          config.color
-                        )}
-                      >
-                        {config.icon}
-                        <span>{item.type.charAt(0).toUpperCase() + item.type.slice(1)}</span>
-                      </span>
-                      <span className="text-xs sm:text-[13px] text-muted font-mono font-bold">
-                        {item.year}
-                      </span>
-                    </div>
-
-                    <h3 className="font-heading font-extrabold text-foreground text-lg sm:text-xl mb-2 group-hover:text-accent transition-colors">
+                  {/* Middle: Title & Story (8 cols) */}
+                  <div className="md:col-span-8 space-y-2.5">
+                    <h3 className="font-heading font-extrabold text-xl sm:text-2xl text-foreground group-hover:translate-x-1 transition-transform duration-200">
                       {item.title}
                     </h3>
-
-                    <p className="text-[15px] sm:text-[16px] text-muted leading-relaxed font-sans">
+                    <p className="text-base sm:text-[17px] text-muted leading-relaxed font-sans max-w-2xl">
                       {item.description}
                     </p>
                   </div>
-                </motion.div>
-              );
-            })}
-          </div>
+
+                  {/* Far right arrow (1 col) */}
+                  <div className="hidden md:flex md:col-span-1 justify-end pt-2">
+                    <div className="w-8 h-8 rounded-full border border-foreground/20 flex items-center justify-center text-muted group-hover:text-foreground group-hover:border-foreground group-hover:bg-foreground group-hover:text-background transition-all">
+                      <ArrowUpRight className="w-4 h-4" />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

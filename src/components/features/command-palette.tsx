@@ -145,7 +145,7 @@ export function CommandPalette() {
       {
         id: "theme",
         label: `Switch to ${theme === "dark" ? "Light" : "Dark"} Mode`,
-        icon: theme === "dark" ? <Sun className="w-4 h-4 text-accent" /> : <Moon className="w-4 h-4 text-accent" />,
+        icon: theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />,
         category: "Preferences",
         action: () => {
           toggleTheme();
@@ -155,8 +155,8 @@ export function CommandPalette() {
       },
       {
         id: "ai",
-        label: "Open Personal AI Twin",
-        icon: <Bot className="w-4 h-4 text-accent" />,
+        label: "Open Personal AI Assistant",
+        icon: <Bot className="w-4 h-4" />,
         category: "Intelligence",
         action: () => {
           setIsOpen(false);
@@ -244,11 +244,11 @@ export function CommandPalette() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.15 }}
-            className="relative w-full max-w-xl rounded-2xl border border-border bg-surface text-foreground shadow-2xl overflow-hidden font-sans"
+            className="relative w-full max-w-xl rounded-2xl border-2 border-foreground bg-surface text-foreground shadow-[8px_8px_0px_#080808] overflow-hidden font-sans"
           >
             {/* Search input */}
-            <div className="flex items-center gap-3 px-5 border-b border-border bg-surface-secondary/40">
-              <Search className="w-4 h-4 text-accent" />
+            <div className="flex items-center gap-3 px-5 border-b border-foreground/20 bg-background">
+              <Search className="w-4 h-4 text-foreground" />
               <input
                 ref={inputRef}
                 type="text"
@@ -259,21 +259,21 @@ export function CommandPalette() {
                 }}
                 onKeyDown={handleKeyNav}
                 placeholder="Type a command, project, or section..."
-                className="flex-1 py-4 text-sm bg-transparent border-none outline-none font-sans placeholder:text-muted/60"
+                className="flex-1 py-4 text-sm bg-transparent border-none outline-none font-sans placeholder:text-muted"
               />
-              <kbd className="hidden sm:inline-flex px-2 py-0.5 rounded text-[10px] font-mono text-muted bg-surface border border-border">
+              <kbd className="hidden sm:inline-flex px-2 py-0.5 rounded text-[10px] font-mono text-foreground font-bold bg-background border border-foreground/30">
                 ESC
               </kbd>
             </div>
 
             {/* Results list */}
-            <div className="max-h-80 overflow-y-auto p-2">
+            <div className="max-h-80 overflow-y-auto p-2 bg-surface">
               {filtered.length === 0 ? (
                 <p className="text-center text-muted text-sm py-8 font-mono">No matching commands found.</p>
               ) : (
                 Object.entries(grouped).map(([category, items]) => (
                   <div key={category} className="mb-2">
-                    <p className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider text-muted font-semibold">
+                    <p className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider text-muted font-bold">
                       {category}
                     </p>
                     {items.map((cmd) => {
@@ -287,16 +287,16 @@ export function CommandPalette() {
                           className={cn(
                             "flex items-center gap-3 w-full px-3.5 py-2.5 rounded-xl text-left transition-all",
                             isSelected
-                              ? "bg-accent-muted text-foreground font-semibold"
-                              : "text-muted hover:text-foreground"
+                              ? "bg-foreground text-background font-bold"
+                              : "text-foreground hover:bg-black/5 dark:hover:bg-white/5"
                           )}
                         >
-                          <span className={cn(isSelected ? "text-accent" : "text-muted")}>
+                          <span className={cn(isSelected ? "text-background" : "text-muted")}>
                             {cmd.icon}
                           </span>
-                          <span className="text-sm flex-1">{cmd.label}</span>
+                          <span className="text-sm flex-1 font-sans">{cmd.label}</span>
                           {isSelected && (
-                            <span className="text-[10px] font-mono text-accent">↵ Select</span>
+                            <span className="text-[10px] font-mono text-background">↵ Enter</span>
                           )}
                         </button>
                       );
@@ -307,9 +307,9 @@ export function CommandPalette() {
             </div>
 
             {/* Footer */}
-            <div className="flex items-center justify-between px-5 py-2.5 border-t border-border bg-surface-secondary/30 text-[11px] font-mono text-muted">
+            <div className="flex items-center justify-between px-5 py-2.5 border-t border-foreground/20 bg-background text-[11px] font-mono text-muted">
               <span>Use ↑↓ to navigate · Enter to execute</span>
-              <span className="flex items-center gap-1 text-accent">
+              <span className="flex items-center gap-1 font-bold text-foreground">
                 <Command className="w-3 h-3" />K
               </span>
             </div>

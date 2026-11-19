@@ -7,26 +7,25 @@ export function LoadingScreen() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Dismiss after 1.6s
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1600);
+    }, 1400);
     return () => clearTimeout(timer);
   }, []);
 
-  const name = "Rudra Pahune";
+  const name = "RUDRA PAHUNE";
   const letters = name.split("");
 
   return (
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-[#141512] text-[#F3F0E7] pointer-events-none select-none"
+          className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-background text-foreground pointer-events-none select-none"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
           style={{
-            animation: "loaderFadeOut 2.2s ease-in-out forwards",
+            animation: "loaderFadeOut 2.0s ease-in-out forwards",
           }}
         >
           <div className="flex gap-0.5 items-baseline">
@@ -37,23 +36,20 @@ export function LoadingScreen() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: 0.3,
-                  delay: 0.15 + i * 0.04,
+                  delay: 0.1 + i * 0.03,
                   ease: "easeOut",
                 }}
-                className={`text-4xl sm:text-6xl font-heading font-extrabold tracking-tight ${
-                  letter === " " ? "mr-3" : ""
+                className={`text-4xl sm:text-6xl lg:text-7xl font-heading font-black tracking-tighter ${
+                  letter === " " ? "mr-4" : ""
                 }`}
               >
                 {letter}
               </motion.span>
             ))}
-            <span className="text-accent text-5xl sm:text-7xl font-black ml-0.5">
-              .
-            </span>
           </div>
 
-          <div className="mt-4 flex items-center gap-2 text-xs font-mono text-muted tracking-widest uppercase">
-            <span>Backend & AI Systems</span>
+          <div className="mt-4 flex items-center gap-2 text-xs font-mono text-muted tracking-widest uppercase font-bold">
+            <span>Systems • Backends • Applied AI</span>
           </div>
 
           <style jsx>{`

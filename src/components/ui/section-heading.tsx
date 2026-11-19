@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface SectionHeadingProps {
-  label: string;
+  label?: string;
+  number?: string;
   title: string;
   description?: string;
   align?: "left" | "center";
@@ -13,37 +14,40 @@ interface SectionHeadingProps {
 
 export function SectionHeading({
   label,
+  number,
   title,
   description,
-  align = "center",
+  align = "left",
   className,
 }: SectionHeadingProps) {
+  const displayLabel = number ? `${number} / ${label || "INDEX"}` : label;
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 18 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className={cn(
-        "mb-14 md:mb-20",
-        align === "center" ? "text-center max-w-3xl mx-auto" : "max-w-3xl",
-        className
-      )}
+      className={cn("mb-12 md:mb-16", className)}
     >
-      <div className={cn("flex items-center gap-2 mb-3.5", align === "center" && "justify-center")}>
-        <span className="w-2 h-2 rounded-full bg-accent" />
-        <span className="font-mono text-xs sm:text-[13px] uppercase tracking-widest text-accent font-semibold">
-          {label}
-        </span>
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-foreground/20">
+        <div>
+          {displayLabel && (
+            <span className="font-mono text-xs sm:text-[13px] uppercase tracking-widest text-muted font-bold block mb-2">
+              {displayLabel}
+            </span>
+          )}
+          <h2 className="editorial-section-title text-foreground tracking-[-0.03em] uppercase">
+            {title}
+          </h2>
+        </div>
+
+        {description && (
+          <p className="text-muted text-sm sm:text-base max-w-md font-sans leading-relaxed sm:text-right">
+            {description}
+          </p>
+        )}
       </div>
-      <h2 className="fluid-section-heading font-heading font-extrabold text-foreground tracking-tight mb-4 text-balance">
-        {title}
-      </h2>
-      {description && (
-        <p className="text-muted text-[17px] sm:text-[19px] leading-relaxed max-w-2xl mx-auto font-sans">
-          {description}
-        </p>
-      )}
     </motion.div>
   );
 }

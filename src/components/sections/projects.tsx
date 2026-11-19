@@ -10,245 +10,252 @@ import {
   Code2,
   Terminal,
   CheckCircle,
-  Clock,
-  ChevronRight,
   ArrowUpRight,
-  ShieldAlert,
+  Server,
+  Database,
+  Cpu,
 } from "lucide-react";
 import { projects, type Project } from "@/config/portfolio";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ProjectModal } from "@/components/features/project-modal";
 import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
 
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  // The featured project is Intervia
   const featured = projects.find((p) => p.featured) || projects[0];
-  const otherProjects = projects.filter((p) => p.id !== featured.id);
 
   return (
-    <section id="projects" className="section-padding relative border-t border-border/40">
+    <section id="projects" className="section-padding relative border-t border-foreground/20">
       <div className="container-wide">
         <SectionHeading
-          label="Selected Works"
-          title="Engineered Products & Systems"
-          description="Real-world full-stack architectures and AI applications built with production rigor."
+          label="04 / Selected Work"
+          title="Featured Projects"
+          description="Engineered software products, AI pipelines, and distributed backend blueprints."
         />
 
-        {/* Featured Project Showcase: INTERVIA */}
-        <div className="editorial-card rounded-3xl border border-border p-6 sm:p-8 lg:p-12 mb-16 shadow-2xl relative overflow-hidden">
-          {/* Subtle accent corner accent */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-accent/6 rounded-bl-[120px] pointer-events-none" />
+        {/* FLAGSHIP HERO SHOWCASE: INTERVIA (Inspired by reference large work showcase) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="editorial-card rounded-3xl p-6 sm:p-10 lg:p-12 mb-12 bg-surface border border-foreground shadow-[4px_4px_0px_#080808]"
+        >
+          {/* Top Tag & Metadata */}
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-foreground/15 font-mono text-xs">
+            <div className="flex items-center gap-2">
+              <span className="px-3 py-1 rounded-full bg-foreground text-background font-bold uppercase tracking-wider text-[11px]">
+                Flagship Project
+              </span>
+              <span className="text-muted font-bold">2026 • Full-Stack AI</span>
+            </div>
 
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-            {/* Left: Project Details & Features (6 cols) */}
+            <div className="flex items-center gap-2 text-foreground font-semibold">
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <span>In Active Development</span>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 pt-8 items-center">
+            {/* Left Column: Title, Narrative, Tech (6 cols) */}
             <div className="lg:col-span-6 space-y-6">
-              <div className="flex flex-wrap items-center gap-2.5">
-                <span className="editorial-tag text-xs font-semibold">Flagship Project</span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-surface-secondary border border-border text-foreground font-medium">
-                  <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                  {featured.status}
-                </span>
-                <span className="text-xs font-mono text-muted">{featured.category}</span>
-              </div>
-
               <div>
-                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-foreground tracking-tight mb-3.5">
+                <span className="font-mono text-xs uppercase tracking-wider text-muted font-bold block mb-2">
+                  {featured.category}
+                </span>
+                <h3 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-foreground tracking-tight">
                   {featured.title}
                 </h3>
-                <p className="text-[17px] sm:text-[19px] text-foreground/90 leading-relaxed font-sans">
-                  {featured.description}
-                </p>
               </div>
 
-              {/* Architecture tags */}
-              <div className="flex flex-wrap gap-2 pt-1">
+              <p className="text-base sm:text-lg text-foreground/90 font-sans leading-relaxed">
+                {featured.description}
+              </p>
+
+              {/* Architectural Feature Bullets */}
+              <div className="space-y-2.5 pt-2 font-mono text-xs sm:text-[13px] text-muted">
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle className="w-4 h-4 text-foreground flex-shrink-0" />
+                  <span>Real-time AI question generation & dynamic feedback loop</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle className="w-4 h-4 text-foreground flex-shrink-0" />
+                  <span>Interactive in-browser code sandbox with syntax evaluation</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle className="w-4 h-4 text-foreground flex-shrink-0" />
+                  <span>Secure user authentication with 6-digit OTP email verification</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle className="w-4 h-4 text-foreground flex-shrink-0" />
+                  <span>Prisma ORM schema with Supabase-hosted PostgreSQL</span>
+                </div>
+              </div>
+
+              {/* Tech Stack Pills */}
+              <div className="flex flex-wrap gap-2 pt-2">
                 {featured.tech.map((t) => (
                   <span
                     key={t}
-                    className="px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-mono bg-surface-secondary border border-border text-muted hover:text-foreground transition-colors font-medium"
+                    className="px-3 py-1 rounded-full border border-foreground/30 bg-background font-mono text-xs font-bold text-foreground"
                   >
                     {t}
                   </span>
                 ))}
               </div>
 
-              {/* Core Feature highlights */}
-              <div className="space-y-3 pt-2">
-                <p className="text-xs sm:text-[13px] font-mono font-bold uppercase text-accent tracking-wider">
-                  Core Architectural Highlights
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-[13px] font-mono text-muted">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                    <span>AI Question Synthesis Engine</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                    <span>LeetCode-Style Code Sandbox</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                    <span>6-Digit OTP Email Verification</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                    <span>Session Analytics & Reports</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Actions */}
+              {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-3 pt-3">
-                <button
-                  onClick={() => setSelectedProject(featured)}
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-accent text-[#141512] font-semibold text-xs sm:text-sm hover:brightness-110 shadow-sm transition-all min-h-[44px]"
-                >
-                  <span>Project Architecture & Details</span>
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-
                 <a
-                  href={siteConfig.links.github}
+                  href={featured.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-surface-secondary border border-border text-xs sm:text-sm font-medium text-foreground hover:border-accent transition-colors min-h-[44px]"
+                  className="editorial-btn-primary cursor-pointer shadow-xs"
                 >
                   <Github className="w-4 h-4" />
                   <span>GitHub Repository</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
+
+                <button
+                  onClick={() => setSelectedProject(featured)}
+                  className="editorial-btn-secondary cursor-pointer"
+                >
+                  <span>Architecture Details</span>
+                </button>
               </div>
             </div>
 
-            {/* Right: Realistic Application Mockup (6 cols) */}
+            {/* Right Column: Code Editor & Simulation Preview Mockup (6 cols) */}
             <div className="lg:col-span-6">
-              <div className="rounded-2xl border border-border bg-[#10110D] shadow-2xl overflow-hidden font-mono text-xs">
-                {/* Mockup Header */}
-                <div className="flex items-center justify-between px-4 py-3 bg-[#181914] border-b border-border/80">
-                  <div className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full bg-[#E05F55]" />
-                    <span className="w-3 h-3 rounded-full bg-[#E0AF55]" />
-                    <span className="w-3 h-3 rounded-full bg-[#5FB865]" />
-                    <span className="ml-2 text-foreground font-semibold text-xs">intervia.app/room/live</span>
+              <div className="rounded-2xl border border-foreground bg-background p-4 sm:p-5 font-mono text-xs shadow-[3px_3px_0px_#080808] overflow-hidden">
+                {/* Mockup Window Bar */}
+                <div className="flex items-center justify-between pb-3 mb-3 border-b border-foreground/20 text-muted">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
                   </div>
-                  <div className="flex items-center gap-2 text-[10px] text-accent bg-accent/10 px-2.5 py-1 rounded-full border border-accent/20 font-bold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent animate-ping" />
-                    <span>AI Interviewer Active</span>
-                  </div>
+                  <span className="text-[11px] font-bold text-foreground">intervia-session.ts</span>
+                  <span className="text-[10px] uppercase font-bold text-foreground bg-black/10 px-1.5 py-0.5 rounded">Live</span>
                 </div>
 
-                {/* Mockup Split Editor View */}
-                <div className="p-4 sm:p-5 space-y-3 bg-[#12130F] text-[#F3F0E7]">
-                  {/* AI Prompt Dialogue */}
-                  <div className="p-3.5 rounded-xl bg-surface border border-border/80 space-y-1.5">
-                    <div className="flex items-center justify-between text-xs text-accent">
-                      <span className="font-bold flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5" /> AI Evaluator
-                      </span>
-                      <span className="text-muted text-[11px]">Round: DSA / System Design</span>
-                    </div>
-                    <p className="text-xs text-muted-foreground leading-relaxed font-sans">
-                      &quot;Design an LRU Cache with O(1) get and put operations. Explain how you structure your DoublyLinkedList and HashMap.&quot;
-                    </p>
-                  </div>
+                {/* Simulated Code Lines */}
+                <div className="space-y-1.5 text-[11px] sm:text-xs leading-relaxed overflow-x-auto text-foreground">
+                  <p><span className="text-purple-600 font-bold dark:text-purple-400">async function</span> <span className="font-bold">evaluateInterviewResponse</span>(input: <span className="text-blue-600 dark:text-blue-400">CodeSubmission</span>) &#123;</p>
+                  <p className="pl-4 text-muted">// 1. Validate code execution environment</p>
+                  <p className="pl-4"><span className="text-purple-600 font-bold dark:text-purple-400">const</span> sandbox = <span className="text-purple-600 font-bold dark:text-purple-400">await</span> initIsolatedRuntime(&#123; timeoutMs: 4000 &#125;);</p>
+                  <p className="pl-4"><span className="text-purple-600 font-bold dark:text-purple-400">const</span> testResults = <span className="text-purple-600 font-bold dark:text-purple-400">await</span> sandbox.execute(input.code);</p>
+                  <p className="pl-4 text-muted">// 2. Multi-tier AI assessment stream</p>
+                  <p className="pl-4"><span className="text-purple-600 font-bold dark:text-purple-400">const</span> feedback = <span className="text-purple-600 font-bold dark:text-purple-400">await</span> aiEngine.synthesizeFeedback(&#123;</p>
+                  <p className="pl-8">complexity: testResults.timeComplexity,</p>
+                  <p className="pl-8">correctness: testResults.passedCount / testResults.total,</p>
+                  <p className="pl-4">&#125;);</p>
+                  <p className="pl-4"><span className="text-purple-600 font-bold dark:text-purple-400">return</span> &#123; status: <span className="text-green-600 dark:text-green-400 font-bold">&quot;VERIFIED&quot;</span>, score: feedback.score &#125;;</p>
+                  <p>&#125;</p>
+                </div>
 
-                  {/* Code Editor Preview */}
-                  <div className="p-3.5 rounded-xl bg-[#0B0C09] border border-border/60 text-xs space-y-1 font-mono text-foreground/90">
-                    <div className="text-muted-foreground pb-1.5 border-b border-border/40 flex items-center justify-between text-[11px]">
-                      <span>Solution.js</span>
-                      <span>JavaScript (Node.js 20)</span>
-                    </div>
-                    <pre className="text-xs leading-relaxed pt-1.5 text-muted overflow-x-auto">
-                      <code>{`class LRUCache {
-  constructor(capacity) {
-    this.capacity = capacity;
-    this.map = new Map();
-  }
-  get(key) {
-    if (!this.map.has(key)) return -1;
-    const val = this.map.get(key);
-    this.map.delete(key);
-    this.map.set(key, val);
-    return val;
-  }
-}`}</code>
-                    </pre>
-                  </div>
-
-                  {/* Execution Bar */}
-                  <div className="flex items-center justify-between text-xs pt-1">
-                    <div className="flex items-center gap-2 text-accent font-semibold">
-                      <CheckCircle className="w-4 h-4" />
-                      <span>Test cases passed: 14/14</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-muted text-[11px]">
-                      <Clock className="w-3.5 h-3.5" />
-                      <span>Runtime: 42ms</span>
-                    </div>
-                  </div>
+                {/* Real-time stats bar */}
+                <div className="mt-4 pt-3 border-t border-foreground/20 flex items-center justify-between text-[11px] text-muted">
+                  <span className="flex items-center gap-1.5 font-bold text-foreground">
+                    <span className="w-2 h-2 rounded-full bg-green-500 animate-ping" />
+                    <span>Memory: 42MB</span>
+                  </span>
+                  <span>Latency: 18ms</span>
+                  <span>Runtime: Node 20 LTS</span>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Future / Pipeline Projects */}
-        <div className="space-y-6">
-          <div className="flex items-center justify-between">
+        {/* SECONDARY ARCHITECTURES & SYSTEMS GRID (2-column layout matching reference) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {/* Card 1: Multi-Agent Coordination Engine */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.4 }}
+            className="editorial-card rounded-2xl p-6 sm:p-8 bg-surface border border-foreground flex flex-col justify-between group"
+          >
             <div>
-              <h4 className="font-heading font-extrabold text-xl sm:text-2xl text-foreground">
-                Upcoming Architectures & Research
-              </h4>
-              <p className="text-xs sm:text-sm text-muted font-mono mt-0.5">
-                Active Architectural Blueprints & Proof of Concepts
+              <div className="flex items-center justify-between pb-3 mb-4 border-b border-foreground/15 font-mono text-xs">
+                <span className="text-muted font-bold uppercase">System Architecture</span>
+                <span className="font-bold text-foreground">Autonomous AI</span>
+              </div>
+
+              <div className="flex items-center gap-2.5 mb-2">
+                <div className="p-2 rounded-lg bg-foreground text-background">
+                  <Cpu className="w-4 h-4" />
+                </div>
+                <h4 className="font-heading font-black text-2xl text-foreground group-hover:underline underline-offset-4 transition-all">
+                  Multi-Agent Coordination Engine
+                </h4>
+              </div>
+
+              <p className="text-sm sm:text-base font-sans text-muted leading-relaxed mb-6">
+                Investigating autonomous multi-step execution loops where specialized LLM agents communicate via shared boards, decompose complex goals into verifiable sub-steps, and execute tool protocols.
               </p>
             </div>
-            <span className="text-xs font-mono text-accent px-2.5 py-1 rounded-full bg-accent-muted border border-accent/20">
-              Active Pipeline
-            </span>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {otherProjects.map((proj, idx) => (
-              <div
-                key={proj.id}
-                className="editorial-card p-6 sm:p-7 rounded-2xl border border-border/80 flex flex-col justify-between space-y-4 hover:border-accent transition-all duration-300"
-              >
-                <div>
-                  <div className="flex items-center justify-between text-xs font-mono text-muted mb-2.5">
-                    <span className="text-accent font-bold">
-                      {idx === 0 ? "Autonomous Systems" : "Distributed Backend"}
-                    </span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-surface-secondary text-xs border border-border">
-                      Planned
-                    </span>
-                  </div>
-                  <h4 className="font-heading font-extrabold text-xl text-foreground mb-2.5">
-                    {idx === 0 ? "Multi-Agent Coordination Engine" : "High-Throughput Event Broker"}
-                  </h4>
-                  <p className="text-[15px] sm:text-[16px] text-muted leading-relaxed font-sans">
-                    {idx === 0
-                      ? "Investigating autonomous agent protocols that decompose complex tasks into verifiable sub-steps with state persistence and self-healing error recovery."
-                      : "Architectural blueprint exploring message queues, relational data sharding, and edge-cached REST APIs for sub-50ms global latency."}
-                  </p>
-                </div>
-
-                <div className="pt-3 border-t border-border/40 flex items-center justify-between text-xs sm:text-[13px] font-mono text-muted">
-                  <span>Stack: Python • Node.js • PostgreSQL</span>
-                  <span className="text-accent font-semibold">In Research →</span>
-                </div>
+            <div className="pt-4 border-t border-foreground/15 flex items-center justify-between">
+              <div className="flex flex-wrap gap-1.5 font-mono text-xs">
+                <span className="px-2 py-0.5 rounded bg-black/5 text-foreground font-semibold">Autonomous Loops</span>
+                <span className="px-2 py-0.5 rounded bg-black/5 text-foreground font-semibold">Tool Calling</span>
+                <span className="px-2 py-0.5 rounded bg-black/5 text-foreground font-semibold">TypeScript</span>
               </div>
-            ))}
-          </div>
+              <ArrowUpRight className="w-4 h-4 text-foreground group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </div>
+          </motion.div>
+
+          {/* Card 2: High-Throughput Event Broker */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="editorial-card rounded-2xl p-6 sm:p-8 bg-surface border border-foreground flex flex-col justify-between group"
+          >
+            <div>
+              <div className="flex items-center justify-between pb-3 mb-4 border-b border-foreground/15 font-mono text-xs">
+                <span className="text-muted font-bold uppercase">Backend Blueprint</span>
+                <span className="font-bold text-foreground">Distributed Messaging</span>
+              </div>
+
+              <div className="flex items-center gap-2.5 mb-2">
+                <div className="p-2 rounded-lg bg-foreground text-background">
+                  <Server className="w-4 h-4" />
+                </div>
+                <h4 className="font-heading font-black text-2xl text-foreground group-hover:underline underline-offset-4 transition-all">
+                  High-Throughput Event Broker
+                </h4>
+              </div>
+
+              <p className="text-sm sm:text-base font-sans text-muted leading-relaxed mb-6">
+                A distributed backend messaging design focusing on idempotent event ingestion, resilient dead-letter queues, strict transaction isolation, and predictable sub-50ms global latencies.
+              </p>
+            </div>
+
+            <div className="pt-4 border-t border-foreground/15 flex items-center justify-between">
+              <div className="flex flex-wrap gap-1.5 font-mono text-xs">
+                <span className="px-2 py-0.5 rounded bg-black/5 text-foreground font-semibold">Node.js</span>
+                <span className="px-2 py-0.5 rounded bg-black/5 text-foreground font-semibold">PostgreSQL</span>
+                <span className="px-2 py-0.5 rounded bg-black/5 text-foreground font-semibold">Idempotency</span>
+              </div>
+              <ArrowUpRight className="w-4 h-4 text-foreground group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </div>
+          </motion.div>
         </div>
 
-        {/* Project Modal */}
-        <ProjectModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
+        {/* Modal for detail exploration */}
+        {selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            isOpen={!!selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
       </div>
     </section>
   );

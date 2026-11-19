@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { motion } from "framer-motion";
-import { Send, Github, Linkedin, Mail, CheckCircle2, Loader2, ArrowUpRight, ShieldCheck } from "lucide-react";
+import { Send, Github, Linkedin, Mail, CheckCircle2, Loader2, ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { siteConfig } from "@/config/site";
 
@@ -50,94 +49,101 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="section-padding relative border-t border-border/40">
-      <div className="container-wide">
+    <section id="contact" className="section-padding py-20 md:py-28 border-b border-foreground/20">
+      <div className="container-wide max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeading
-          label="Direct Communication"
-          title="Let's Connect & Build"
+          number="07"
+          title="CONTACT"
           description="Interested in collaborating, backend engineering roles, or technical architecture discussions? My inbox is open."
         />
 
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 max-w-6xl mx-auto items-start">
-          {/* Left Column: Direct Links & Info (5 cols) */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="space-y-3">
-              <h3 className="text-xl sm:text-2xl font-heading font-extrabold text-foreground">
-                Get in Touch Directly
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Column: Direct Editorial Info (5 cols) */}
+          <div className="lg:col-span-5 space-y-8">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-widest text-muted mb-2 font-bold">
+                Don&apos;t be shy
+              </p>
+              <h3 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-black text-foreground tracking-tight leading-none mb-6">
+                Drop me a message.
               </h3>
-              <p className="text-[15px] sm:text-[16px] text-muted leading-relaxed font-sans">
+              <p className="text-base sm:text-[17px] text-muted leading-relaxed font-sans mb-6">
                 Whether you have an inquiry about a project, distributed backend designs, or potential opportunities, feel free to reach out via the form or my verified profiles.
               </p>
-            </div>
-
-            {/* Verified Social Connect Cards */}
-            <div className="space-y-3 pt-2">
-              {/* GitHub */}
-              <a
-                href={siteConfig.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="editorial-card flex items-center justify-between p-4 sm:p-5 rounded-2xl group hover:border-accent transition-all duration-300 shadow-xs"
-              >
-                <div className="flex items-center gap-3.5">
-                  <div className="p-3 rounded-xl bg-surface-secondary text-foreground group-hover:text-accent transition-colors">
-                    <Github className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm sm:text-base font-heading font-bold text-foreground">GitHub Profile</h4>
-                    <p className="text-xs sm:text-[13px] font-mono text-muted">@rudrapahune-dev</p>
-                  </div>
-                </div>
-                <ArrowUpRight className="w-4 h-4 text-muted group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-              </a>
-
-              {/* LinkedIn */}
-              <a
-                href={siteConfig.links.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="editorial-card flex items-center justify-between p-4 sm:p-5 rounded-2xl group hover:border-accent transition-all duration-300 shadow-xs"
-              >
-                <div className="flex items-center gap-3.5">
-                  <div className="p-3 rounded-xl bg-surface-secondary text-[#0077B5]">
-                    <Linkedin className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm sm:text-base font-heading font-bold text-foreground">LinkedIn Network</h4>
-                    <p className="text-xs sm:text-[13px] font-mono text-muted">Rudra Pahune</p>
-                  </div>
-                </div>
-                <ArrowUpRight className="w-4 h-4 text-muted group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-              </a>
-
-              {/* Email Direct */}
               <a
                 href="mailto:rudrapahune@gmail.com"
-                className="editorial-card flex items-center justify-between p-4 sm:p-5 rounded-2xl group hover:border-accent transition-all duration-300 shadow-xs"
+                className="editorial-btn-primary inline-flex items-center gap-2 px-6 py-3 text-sm font-bold min-h-[44px]"
               >
-                <div className="flex items-center gap-3.5">
-                  <div className="p-3 rounded-xl bg-surface-secondary text-accent">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm sm:text-base font-heading font-bold text-foreground">Direct Email</h4>
-                    <p className="text-xs sm:text-[13px] font-mono text-muted">rudrapahune@gmail.com</p>
-                  </div>
-                </div>
-                <ArrowUpRight className="w-4 h-4 text-muted group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                <Mail className="w-4 h-4" />
+                <span>rudrapahune@gmail.com</span>
               </a>
+            </div>
+
+            {/* Verified Social Connect List */}
+            <div className="border-t border-foreground/20 pt-6 space-y-4">
+              <p className="font-mono text-xs uppercase tracking-wider text-muted font-bold">
+                Direct Channels
+              </p>
+
+              <div className="space-y-3 font-mono text-sm">
+                <a
+                  href={siteConfig.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between py-2 border-b border-foreground/10 group hover:border-foreground transition-colors"
+                >
+                  <span className="flex items-center gap-2.5 font-bold text-foreground">
+                    <Github className="w-4 h-4" />
+                    GitHub
+                  </span>
+                  <span className="text-xs text-muted group-hover:text-foreground flex items-center gap-1 transition-colors">
+                    @rudrapahune-dev <ArrowUpRight className="w-3.5 h-3.5" />
+                  </span>
+                </a>
+
+                <a
+                  href={siteConfig.links.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between py-2 border-b border-foreground/10 group hover:border-foreground transition-colors"
+                >
+                  <span className="flex items-center gap-2.5 font-bold text-foreground">
+                    <Linkedin className="w-4 h-4" />
+                    LinkedIn
+                  </span>
+                  <span className="text-xs text-muted group-hover:text-foreground flex items-center gap-1 transition-colors">
+                    Rudra Pahune <ArrowUpRight className="w-3.5 h-3.5" />
+                  </span>
+                </a>
+
+                <a
+                  href="mailto:rudrapahune@gmail.com"
+                  className="flex items-center justify-between py-2 border-b border-foreground/10 group hover:border-foreground transition-colors"
+                >
+                  <span className="flex items-center gap-2.5 font-bold text-foreground">
+                    <Mail className="w-4 h-4" />
+                    Email
+                  </span>
+                  <span className="text-xs text-muted group-hover:text-foreground flex items-center gap-1 transition-colors">
+                    rudrapahune@gmail.com <ArrowUpRight className="w-3.5 h-3.5" />
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
 
           {/* Right Column: Contact Form (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="editorial-card p-6 sm:p-8 lg:p-9 rounded-3xl border border-border shadow-xl">
-              <h3 className="text-lg sm:text-xl font-heading font-extrabold text-foreground mb-4">
-                Send a Structured Message
-              </h3>
+            <div className="editorial-card p-7 sm:p-9 rounded-2xl shadow-[5px_5px_0px_#080808]">
+              <h4 className="text-xl font-heading font-black text-foreground mb-1">
+                Send a Message
+              </h4>
+              <p className="text-xs font-mono text-muted mb-6">
+                Direct dispatch via Resend API • Typically responds within 24h
+              </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Honeypot field for anti-bot protection (hidden from humans, filled by bots) */}
+                {/* Honeypot field for anti-bot protection */}
                 <div className="hidden" aria-hidden="true" style={{ display: "none" }}>
                   <label htmlFor="website-hp">Website</label>
                   <input
@@ -154,8 +160,8 @@ export function Contact() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Name field */}
                   <div>
-                    <label htmlFor="contact-name" className="block text-xs sm:text-[13px] font-mono font-medium text-foreground mb-1.5">
-                      Your Name <span className="text-accent">*</span>
+                    <label htmlFor="contact-name" className="block text-xs font-mono font-bold text-foreground uppercase tracking-wider mb-1.5">
+                      Name <span className="text-red-500">*</span>
                     </label>
                     <input
                       id="contact-name"
@@ -164,14 +170,14 @@ export function Contact() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Alex Chen"
-                      className="w-full px-4 py-3 rounded-xl border text-sm sm:text-base transition-all font-sans min-h-[44px]"
+                      className="w-full px-4 py-3 rounded-xl border border-foreground/30 bg-background text-foreground text-sm focus:border-foreground focus:outline-none transition-all font-sans min-h-[44px]"
                     />
                   </div>
 
                   {/* Email field */}
                   <div>
-                    <label htmlFor="contact-email" className="block text-xs sm:text-[13px] font-mono font-medium text-foreground mb-1.5">
-                      Your Email <span className="text-accent">*</span>
+                    <label htmlFor="contact-email" className="block text-xs font-mono font-bold text-foreground uppercase tracking-wider mb-1.5">
+                      Email <span className="text-red-500">*</span>
                     </label>
                     <input
                       id="contact-email"
@@ -180,15 +186,15 @@ export function Contact() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="alex@company.com"
-                      className="w-full px-4 py-3 rounded-xl border text-sm sm:text-base transition-all font-sans min-h-[44px]"
+                      className="w-full px-4 py-3 rounded-xl border border-foreground/30 bg-background text-foreground text-sm focus:border-foreground focus:outline-none transition-all font-sans min-h-[44px]"
                     />
                   </div>
                 </div>
 
                 {/* Subject field */}
                 <div>
-                  <label htmlFor="contact-subject" className="block text-xs sm:text-[13px] font-mono font-medium text-foreground mb-1.5">
-                    Subject / Discussion Topic <span className="text-accent">*</span>
+                  <label htmlFor="contact-subject" className="block text-xs font-mono font-bold text-foreground uppercase tracking-wider mb-1.5">
+                    Subject <span className="text-red-500">*</span>
                   </label>
                   <input
                     id="contact-subject"
@@ -196,15 +202,15 @@ export function Contact() {
                     required
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    placeholder="Project Inquiry / Backend Collaboration"
-                    className="w-full px-4 py-3 rounded-xl border text-sm sm:text-base transition-all font-sans min-h-[44px]"
+                    placeholder="Engineering Collaboration / Architecture Discussion"
+                    className="w-full px-4 py-3 rounded-xl border border-foreground/30 bg-background text-foreground text-sm focus:border-foreground focus:outline-none transition-all font-sans min-h-[44px]"
                   />
                 </div>
 
                 {/* Message field */}
                 <div>
-                  <label htmlFor="contact-message" className="block text-xs sm:text-[13px] font-mono font-medium text-foreground mb-1.5">
-                    Message Body <span className="text-accent">*</span>
+                  <label htmlFor="contact-message" className="block text-xs font-mono font-bold text-foreground uppercase tracking-wider mb-1.5">
+                    Message <span className="text-red-500">*</span>
                   </label>
                   <textarea
                     id="contact-message"
@@ -213,7 +219,7 @@ export function Contact() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Hello Rudra, I came across your portfolio and wanted to discuss..."
-                    className="w-full px-4 py-3 rounded-xl border text-sm sm:text-base transition-all resize-none font-sans"
+                    className="w-full px-4 py-3 rounded-xl border border-foreground/30 bg-background text-foreground text-sm focus:border-foreground focus:outline-none transition-all resize-none font-sans"
                   />
                 </div>
 
@@ -222,7 +228,7 @@ export function Contact() {
                   <button
                     type="submit"
                     disabled={status === "sending" || status === "success"}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-accent text-[#141512] font-semibold text-sm sm:text-base hover:brightness-110 shadow-sm transition-all disabled:opacity-60 disabled:cursor-not-allowed min-h-[44px]"
+                    className="editorial-btn-primary w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 min-h-[44px] disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {status === "sending" ? (
                       <>
@@ -243,30 +249,30 @@ export function Contact() {
                   </button>
 
                   <span className="text-xs font-mono text-muted">
-                    Response time: Usually within 24 hours
+                    Direct delivery via Resend
                   </span>
                 </div>
 
                 {status === "success" && (
-                  <div className="p-4 rounded-xl bg-accent-muted border border-accent/40 text-accent text-xs sm:text-[13px] font-mono leading-relaxed flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                  <div className="p-4 rounded-xl bg-foreground/5 border border-foreground/30 text-xs font-mono leading-relaxed flex items-start gap-2.5">
+                    <CheckCircle2 className="w-4 h-4 text-foreground flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className="font-semibold text-foreground">Message Dispatched</p>
+                      <p className="font-bold text-foreground">Message Dispatched</p>
                       <p className="text-muted text-xs mt-0.5">{feedbackMessage}</p>
                     </div>
                   </div>
                 )}
 
                 {status === "error" && (
-                  <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs sm:text-[13px] font-mono leading-relaxed space-y-2">
-                    <p className="font-semibold text-red-300">Notice:</p>
-                    <p className="text-muted text-xs leading-relaxed">{feedbackMessage}</p>
+                  <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-500 text-xs font-mono leading-relaxed space-y-2">
+                    <p className="font-bold">Transmission Notice:</p>
+                    <p className="text-xs leading-relaxed">{feedbackMessage}</p>
                     <a
                       href="mailto:rudrapahune@gmail.com"
-                      className="inline-flex items-center gap-1.5 text-accent hover:underline font-bold text-xs"
+                      className="inline-flex items-center gap-1.5 underline font-bold text-xs"
                     >
                       <Mail className="w-3.5 h-3.5" />
-                      <span>Open email client directly (rudrapahune@gmail.com)</span>
+                      <span>Open mail client directly (rudrapahune@gmail.com)</span>
                     </a>
                   </div>
                 )}
