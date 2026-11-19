@@ -268,15 +268,15 @@ export function ArchitectureExplorer() {
                 className={cn(
                   "px-4 py-2.5 rounded-full font-mono text-xs sm:text-[13px] font-bold transition-all flex items-center gap-2 min-h-[42px] cursor-pointer",
                   isSelected
-                    ? "bg-foreground text-background shadow-xs border border-foreground"
-                    : "bg-surface border border-foreground/30 text-foreground hover:border-foreground"
+                    ? "bg-foreground text-background border-2 border-foreground shadow-[2px_2px_0px_var(--cobalt)]"
+                    : "bg-surface border border-foreground/30 text-foreground hover:border-cobalt hover:text-cobalt"
                 )}
               >
                 <span>{sc.name}</span>
                 <span
                   className={cn(
-                    "text-[10px] px-2 py-0.5 rounded-full font-mono uppercase tracking-wider",
-                    isSelected ? "bg-background text-foreground" : "bg-black/5 text-muted"
+                    "text-[10px] px-2 py-0.5 rounded-full font-mono uppercase tracking-wider font-bold",
+                    isSelected ? "bg-cobalt text-white" : "bg-black/5 dark:bg-white/10 text-muted"
                   )}
                 >
                   {sc.badge}
@@ -345,16 +345,16 @@ export function ArchitectureExplorer() {
                     className={cn(
                       "p-4 sm:p-5 rounded-2xl border cursor-pointer transition-all relative overflow-hidden group select-none",
                       isCurrentActive
-                        ? "bg-surface-secondary border-accent shadow-md shadow-accent/10"
-                        : "bg-surface/60 border-border/80 hover:border-border hover:bg-surface-secondary/40",
-                      isPacketHere && "ring-2 ring-accent border-accent bg-accent-muted/30"
+                        ? "bg-surface border-2 border-cobalt shadow-[3px_3px_0px_var(--cobalt)]"
+                        : "bg-surface/60 border-foreground/20 hover:border-cobalt/60 hover:bg-surface",
+                      isPacketHere && "ring-2 ring-cobalt border-cobalt"
                     )}
                   >
                     {/* Active packet indicator light */}
                     {isPacketHere && (
                       <motion.div
                         layoutId="active-packet"
-                        className="absolute top-2 right-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent text-[#141512] text-[10px] font-mono font-bold animate-pulse"
+                        className="absolute top-2 right-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-cobalt text-white text-[10px] font-mono font-bold animate-pulse"
                       >
                         <Zap className="w-3 h-3 fill-current" />
                         <span>PACKET</span>
@@ -362,11 +362,11 @@ export function ArchitectureExplorer() {
                     )}
 
                     <div className="flex items-center justify-between text-xs font-mono text-muted mb-2">
-                      <span className="font-bold text-accent">0{idx + 1} // NODE</span>
+                      <span className={cn("font-bold", isCurrentActive ? "text-cobalt" : "text-foreground")}>0{idx + 1} // NODE</span>
                       <span className="text-[11px] font-mono">{step.latency}</span>
                     </div>
 
-                    <h4 className="font-heading font-bold text-base sm:text-lg text-foreground mb-1 group-hover:text-accent transition-colors">
+                    <h4 className="font-heading font-bold text-base sm:text-lg text-foreground mb-1 group-hover:text-cobalt transition-colors">
                       {step.label}
                     </h4>
 
@@ -374,9 +374,9 @@ export function ArchitectureExplorer() {
                       {step.subtitle}
                     </p>
 
-                    <div className="pt-2 border-t border-border/40 text-[11px] font-mono text-foreground/80 flex items-center justify-between">
+                    <div className="pt-2 border-t border-foreground/10 text-[11px] font-mono text-foreground/80 flex items-center justify-between">
                       <span className="truncate">{step.tech.split("•")[0].trim()}</span>
-                      <span className="text-accent text-[10px] uppercase font-bold">Inspect →</span>
+                      <span className="text-cobalt text-[10px] uppercase font-bold">Inspect →</span>
                     </div>
                   </motion.div>
                 );

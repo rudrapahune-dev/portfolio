@@ -24,6 +24,10 @@
   --accent-secondary: #1F211A;
   --accent-muted: rgba(8, 8, 8, 0.08);
   --accent-glow: rgba(8, 8, 8, 0.12);
+  /* Electric Cobalt Accent */
+  --cobalt: #3730D9;
+  --cobalt-glow: rgba(55, 48, 217, 0.25);
+  --cobalt-muted: rgba(55, 48, 217, 0.08);
   --input-bg: #FFFFFF;
   --input-text: #080808;
   --input-border: #080808;
@@ -46,6 +50,10 @@
   --accent-secondary: #C5E86C;
   --accent-muted: rgba(242, 255, 184, 0.14);
   --accent-glow: rgba(242, 255, 184, 0.25);
+  /* Electric Cobalt for Dark Mode (Accessible Indigo/Cobalt Tint) */
+  --cobalt: #6366F1;
+  --cobalt-glow: rgba(99, 102, 241, 0.35);
+  --cobalt-muted: rgba(99, 102, 241, 0.15);
   --input-bg: #141610;
   --input-text: #F2FFB8;
   --input-border: rgba(242, 255, 184, 0.4);
@@ -223,6 +231,46 @@ body::before {
 .editorial-btn-secondary:hover {
   background-color: var(--accent-muted);
   transform: translateY(-1px);
+}
+
+/* ========== Interactive Editorial Skill Cards ========== */
+.editorial-skill-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0.95rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(8, 8, 8, 0.16);
+  background-color: var(--surface);
+  color: var(--foreground);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 1px 1px 0px rgba(8, 8, 8, 0.06);
+}
+
+.editorial-skill-card:hover {
+  border-color: var(--cobalt);
+  background-color: var(--surface);
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0px var(--cobalt);
+}
+
+.editorial-skill-card:active {
+  transform: translateY(0px);
+  box-shadow: 1px 1px 0px var(--cobalt);
+}
+
+.dark .editorial-skill-card {
+  border-color: rgba(242, 255, 184, 0.16);
+  background-color: var(--surface);
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
+}
+
+.dark .editorial-skill-card:hover {
+  border-color: var(--cobalt);
+  box-shadow: 3px 3px 0px var(--cobalt);
 }
 
 /* ========== Contact Form & Input Theme Styling ========== */

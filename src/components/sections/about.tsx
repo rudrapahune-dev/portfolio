@@ -29,9 +29,9 @@ export function About() {
             </h3>
 
             {/* Education Highlight Card */}
-            <div className="editorial-card p-6 sm:p-7 rounded-2xl bg-surface border border-foreground space-y-3">
-              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-muted font-bold">
-                <GraduationCap className="w-4 h-4 text-foreground" />
+            <div className="editorial-card p-6 sm:p-7 rounded-2xl bg-surface border border-foreground/30 hover:border-cobalt hover:shadow-[4px_4px_0px_var(--cobalt)] transition-all duration-200 space-y-3">
+              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-cobalt font-bold">
+                <GraduationCap className="w-4 h-4 text-cobalt" />
                 <span>Formal Education</span>
               </div>
               <div>
@@ -50,25 +50,25 @@ export function About() {
 
             {/* Core Tenets */}
             <div className="space-y-3 pt-2 font-mono text-xs text-foreground">
-              <div className="p-3.5 rounded-xl border border-foreground/20 bg-background flex items-center justify-between">
+              <div className="p-3.5 rounded-xl border border-foreground/20 bg-background flex items-center justify-between hover:border-cobalt transition-colors">
                 <div className="flex items-center gap-2.5">
-                  <Server className="w-4 h-4 text-foreground" />
+                  <Server className="w-4 h-4 text-cobalt" />
                   <span className="font-bold">Backend Architecture</span>
                 </div>
                 <span className="text-muted">Modular REST & Microservices</span>
               </div>
 
-              <div className="p-3.5 rounded-xl border border-foreground/20 bg-background flex items-center justify-between">
+              <div className="p-3.5 rounded-xl border border-foreground/20 bg-background flex items-center justify-between hover:border-cobalt transition-colors">
                 <div className="flex items-center gap-2.5">
-                  <Database className="w-4 h-4 text-foreground" />
+                  <Database className="w-4 h-4 text-cobalt" />
                   <span className="font-bold">Data Integrity</span>
                 </div>
                 <span className="text-muted">PostgreSQL & ACID Bounds</span>
               </div>
 
-              <div className="p-3.5 rounded-xl border border-foreground/20 bg-background flex items-center justify-between">
+              <div className="p-3.5 rounded-xl border border-foreground/20 bg-background flex items-center justify-between hover:border-cobalt transition-colors">
                 <div className="flex items-center gap-2.5">
-                  <Sparkles className="w-4 h-4 text-foreground" />
+                  <Sparkles className="w-4 h-4 text-cobalt" />
                   <span className="font-bold">Applied AI Workflows</span>
                 </div>
                 <span className="text-muted">Agents & Structured LLMs</span>

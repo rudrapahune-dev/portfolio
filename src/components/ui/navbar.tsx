@@ -107,13 +107,22 @@ export function Navbar() {
                     key={item.href}
                     onClick={() => scrollTo(item.href)}
                     className={cn(
-                      "relative py-1 transition-all duration-200 cursor-pointer",
+                      "relative py-1.5 transition-all duration-200 cursor-pointer group flex flex-col items-center",
                       isActive
-                        ? "text-foreground font-black underline decoration-2 underline-offset-8"
-                        : "text-foreground/75 hover:text-foreground hover:underline underline-offset-8"
+                        ? "text-foreground font-black"
+                        : "text-foreground/70 hover:text-foreground"
                     )}
                   >
-                    {item.label}
+                    <span>{item.label}</span>
+                    {isActive ? (
+                      <motion.span
+                        layoutId="nav-active-dot"
+                        className="absolute -bottom-0.5 w-1.5 h-1.5 rounded-full bg-cobalt"
+                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                      />
+                    ) : (
+                      <span className="w-1 h-1 rounded-full bg-transparent group-hover:bg-foreground/30 transition-colors mt-0.5" />
+                    )}
                   </button>
                 );
               })}
@@ -126,7 +135,7 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Profile"
-                className="hidden sm:inline-flex p-2 rounded-full hover:bg-black/5 text-foreground transition-colors"
+                className="hidden sm:inline-flex p-2 rounded-full hover:bg-black/5 hover:text-cobalt text-foreground transition-colors"
                 title="GitHub @rudrapahune-dev"
               >
                 <Github className="w-4 h-4" />
@@ -137,7 +146,7 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn Profile"
-                className="hidden sm:inline-flex p-2 rounded-full hover:bg-black/5 text-foreground transition-colors"
+                className="hidden sm:inline-flex p-2 rounded-full hover:bg-black/5 hover:text-[#0077B5] text-foreground transition-colors"
                 title="LinkedIn Profile"
               >
                 <Linkedin className="w-4 h-4" />
@@ -146,7 +155,7 @@ export function Navbar() {
               {/* Theme Toggle */}
               <button
                 onClick={toggleTheme}
-                className="p-2 rounded-full hover:bg-black/5 text-foreground transition-colors cursor-pointer"
+                className="p-2 rounded-full hover:bg-black/5 hover:text-cobalt text-foreground transition-colors cursor-pointer"
                 aria-label="Toggle theme"
                 title="Toggle Dark/Light Theme"
               >
@@ -160,7 +169,7 @@ export function Navbar() {
               {/* Minimal "EMAIL ME" Pill Button inspired by reference */}
               <button
                 onClick={() => scrollTo("#contact")}
-                className="hidden xs:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-foreground text-background font-mono text-xs font-bold uppercase tracking-wider hover:opacity-85 transition-all shadow-xs cursor-pointer min-h-[38px]"
+                className="hidden xs:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-foreground text-background font-mono text-xs font-bold uppercase tracking-wider hover:border-cobalt hover:shadow-[2px_2px_0px_var(--cobalt)] transition-all cursor-pointer min-h-[38px] border-2 border-transparent"
               >
                 <span>Email Me</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />

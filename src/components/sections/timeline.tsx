@@ -48,10 +48,10 @@ export function Timeline() {
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start">
                   {/* Left: Year & Category pill (3 cols) */}
                   <div className="md:col-span-3 space-y-2">
-                    <span className="font-mono text-2xl sm:text-3xl font-black text-foreground tracking-tight block">
+                    <span className="font-mono text-2xl sm:text-3xl font-black text-foreground group-hover:text-cobalt tracking-tight block transition-colors">
                       {item.year}
                     </span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-foreground text-background">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-foreground text-background group-hover:bg-cobalt group-hover:text-white transition-colors">
                       {config.icon}
                       <span>{config.label}</span>
                     </span>
@@ -59,7 +59,7 @@ export function Timeline() {
 
                   {/* Middle: Title & Story (8 cols) */}
                   <div className="md:col-span-8 space-y-2.5">
-                    <h3 className="font-heading font-extrabold text-xl sm:text-2xl text-foreground group-hover:translate-x-1 transition-transform duration-200">
+                    <h3 className="font-heading font-extrabold text-xl sm:text-2xl text-foreground group-hover:text-cobalt group-hover:translate-x-1 transition-all duration-200">
                       {item.title}
                     </h3>
                     <p className="text-base sm:text-[17px] text-muted leading-relaxed font-sans max-w-2xl">
@@ -69,7 +69,7 @@ export function Timeline() {
 
                   {/* Far right arrow (1 col) */}
                   <div className="hidden md:flex md:col-span-1 justify-end pt-2">
-                    <div className="w-8 h-8 rounded-full border border-foreground/20 flex items-center justify-center text-muted group-hover:text-foreground group-hover:border-foreground group-hover:bg-foreground group-hover:text-background transition-all">
+                    <div className="w-8 h-8 rounded-full border border-foreground/20 flex items-center justify-center text-muted group-hover:text-white group-hover:border-cobalt group-hover:bg-cobalt transition-all">
                       <ArrowUpRight className="w-4 h-4" />
                     </div>
                   </div>

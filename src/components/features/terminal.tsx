@@ -189,16 +189,16 @@ export function TerminalSection() {
 
         <div className="mb-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-foreground animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-cobalt animate-pulse" />
             <h3 className="text-xs font-mono font-bold tracking-widest text-muted uppercase">
               Terminal v2.1.0 • Bourne Again Shell
             </h3>
           </div>
           <span className="text-xs font-mono text-muted hidden sm:inline-block">
             Quick commands:{" "}
-            <button onClick={() => handleCommand("help")} className="font-bold underline hover:text-foreground">help</button> |{" "}
-            <button onClick={() => handleCommand("skills")} className="font-bold underline hover:text-foreground">skills</button> |{" "}
-            <button onClick={() => handleCommand("projects")} className="font-bold underline hover:text-foreground">projects</button>
+            <button onClick={() => handleCommand("help")} className="font-bold underline hover:text-cobalt transition-colors">help</button> |{" "}
+            <button onClick={() => handleCommand("skills")} className="font-bold underline hover:text-cobalt transition-colors">skills</button> |{" "}
+            <button onClick={() => handleCommand("projects")} className="font-bold underline hover:text-cobalt transition-colors">projects</button>
           </span>
         </div>
 

@@ -21,6 +21,11 @@ module.exports = {
         },
         border: 'var(--border)',
         muted: 'var(--muted)',
+        cobalt: {
+          DEFAULT: 'var(--cobalt)',
+          glow: 'var(--cobalt-glow)',
+          muted: 'var(--cobalt-muted)',
+        },
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],

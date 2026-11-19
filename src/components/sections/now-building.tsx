@@ -41,26 +41,26 @@ export function NowBuilding() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-30px" }}
               transition={{ duration: 0.4, delay: idx * 0.06 }}
-              className="editorial-card p-6 sm:p-7 rounded-2xl bg-surface border border-foreground flex flex-col justify-between group"
+              className="editorial-card p-6 sm:p-7 rounded-2xl bg-surface border border-foreground/30 hover:border-cobalt hover:shadow-[4px_4px_0px_var(--cobalt)] transition-all duration-200 flex flex-col justify-between group"
             >
               <div>
                 {/* Card Top: Category and Status Badge */}
                 <div className="flex items-center justify-between pb-4 mb-4 border-b border-foreground/15">
-                  <span className="font-mono text-xs uppercase tracking-wider text-muted font-bold">
+                  <span className="font-mono text-xs uppercase tracking-wider text-muted font-bold group-hover:text-cobalt transition-colors">
                     {item.category}
                   </span>
-                  <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-foreground/30 bg-background font-mono text-[11px] font-bold text-foreground">
-                    <span className="w-1.5 h-1.5 rounded-full bg-foreground animate-pulse" />
+                  <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-foreground/30 bg-background font-mono text-[11px] font-bold text-foreground group-hover:border-cobalt transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cobalt animate-pulse" />
                     <span>{item.status}</span>
                   </div>
                 </div>
 
                 {/* Card Title with Icon */}
                 <div className="flex items-center gap-2.5 mb-2.5">
-                  <div className="p-2 rounded-lg bg-foreground text-background">
+                  <div className="p-2 rounded-lg bg-foreground text-background group-hover:bg-cobalt group-hover:text-white transition-colors">
                     {iconMap[item.icon]}
                   </div>
-                  <h3 className="font-heading font-black text-xl text-foreground group-hover:underline underline-offset-4 transition-all">
+                  <h3 className="font-heading font-black text-xl text-foreground group-hover:text-cobalt transition-colors">
                     {item.title}
                   </h3>
                 </div>

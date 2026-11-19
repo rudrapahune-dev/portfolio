@@ -86,65 +86,102 @@ export const buildingAndExploring: ExploringItem[] = [
   },
 ];
 
+export const skillUrls: Record<string, string> = {
+  // Programming languages
+  "Java": "https://www.java.com/",
+  "JavaScript": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+  "Python": "https://www.python.org/",
+  "C": "https://en.cppreference.com/w/c",
+
+  // Frontend
+  "HTML": "https://developer.mozilla.org/en-US/docs/Web/HTML",
+  "CSS": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+  "React": "https://react.dev/",
+  "Next.js": "https://nextjs.org/",
+  "Tailwind CSS": "https://tailwindcss.com/",
+
+  // Backend
+  "Node.js": "https://nodejs.org/",
+  "Express.js": "https://expressjs.com/",
+  "REST APIs": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+
+  // Databases
+  "PostgreSQL": "https://www.postgresql.org/",
+  "Supabase": "https://supabase.com/",
+  "Prisma ORM": "https://www.prisma.io/",
+
+  // Tools and platforms
+  "Git": "https://git-scm.com/",
+  "GitHub": "https://github.com/",
+  "VS Code": "https://code.visualstudio.com/",
+  "Postman": "https://www.postman.com/",
+  "Vercel": "https://vercel.com/",
+
+  // AI and machine learning
+  "Machine Learning": "https://scikit-learn.org/",
+  "Generative AI": "https://ai.google.dev/",
+  "AI Agents": "https://ai.google.dev/gemini-api/docs",
+};
+
 export const skills = {
   categories: [
     {
       name: "Programming Languages",
       icon: "Terminal" as const,
       items: [
-        { name: "Java", icon: "java" },
-        { name: "JavaScript", icon: "javascript" },
-        { name: "Python", icon: "python" },
-        { name: "C", icon: "c" },
+        { name: "Java", icon: "java", url: "https://www.java.com/" },
+        { name: "JavaScript", icon: "javascript", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+        { name: "Python", icon: "python", url: "https://www.python.org/" },
+        { name: "C", icon: "c", url: "https://en.cppreference.com/w/c" },
       ],
     },
     {
       name: "Frontend Development",
       icon: "Layout" as const,
       items: [
-        { name: "HTML", icon: "html" },
-        { name: "CSS", icon: "css" },
-        { name: "React", icon: "react" },
-        { name: "Next.js", icon: "nextjs" },
-        { name: "Tailwind CSS", icon: "tailwind" },
+        { name: "HTML", icon: "html", url: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
+        { name: "CSS", icon: "css", url: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
+        { name: "React", icon: "react", url: "https://react.dev/" },
+        { name: "Next.js", icon: "nextjs", url: "https://nextjs.org/" },
+        { name: "Tailwind CSS", icon: "tailwind", url: "https://tailwindcss.com/" },
       ],
     },
     {
       name: "Backend Development",
       icon: "Server" as const,
       items: [
-        { name: "Node.js", icon: "nodejs" },
-        { name: "Express.js", icon: "express" },
-        { name: "REST APIs", icon: "api" },
+        { name: "Node.js", icon: "nodejs", url: "https://nodejs.org/" },
+        { name: "Express.js", icon: "express", url: "https://expressjs.com/" },
+        { name: "REST APIs", icon: "api", url: "https://developer.mozilla.org/en-US/docs/Web/HTTP" },
       ],
     },
     {
       name: "Databases",
       icon: "Database" as const,
       items: [
-        { name: "PostgreSQL", icon: "postgresql" },
-        { name: "Supabase", icon: "supabase" },
-        { name: "Prisma ORM", icon: "prisma" },
+        { name: "PostgreSQL", icon: "postgresql", url: "https://www.postgresql.org/" },
+        { name: "Supabase", icon: "supabase", url: "https://supabase.com/" },
+        { name: "Prisma ORM", icon: "prisma", url: "https://www.prisma.io/" },
       ],
     },
     {
       name: "Tools & Platforms",
       icon: "Wrench" as const,
       items: [
-        { name: "Git", icon: "git" },
-        { name: "GitHub", icon: "github" },
-        { name: "VS Code", icon: "vscode" },
-        { name: "Postman", icon: "postman" },
-        { name: "Vercel", icon: "vercel" },
+        { name: "Git", icon: "git", url: "https://git-scm.com/" },
+        { name: "GitHub", icon: "github", url: "https://github.com/" },
+        { name: "VS Code", icon: "vscode", url: "https://code.visualstudio.com/" },
+        { name: "Postman", icon: "postman", url: "https://www.postman.com/" },
+        { name: "Vercel", icon: "vercel", url: "https://vercel.com/" },
       ],
     },
     {
       name: "AI & Machine Learning",
       icon: "Brain" as const,
       items: [
-        { name: "Machine Learning", icon: "ml" },
-        { name: "Generative AI", icon: "genai" },
-        { name: "AI Agents", icon: "agents" },
+        { name: "Machine Learning", icon: "ml", url: "https://scikit-learn.org/" },
+        { name: "Generative AI", icon: "genai", url: "https://ai.google.dev/" },
+        { name: "AI Agents", icon: "agents", url: "https://ai.google.dev/gemini-api/docs" },
       ],
     },
   ],

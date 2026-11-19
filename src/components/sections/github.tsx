@@ -184,17 +184,17 @@ export function GitHubSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ y: -4 }}
-                  className="editorial-card p-6 sm:p-7 rounded-2xl flex flex-col justify-between group shadow-sm hover:shadow-[4px_4px_0px_#080808] transition-all duration-300"
+                  className="editorial-card p-6 sm:p-7 rounded-2xl flex flex-col justify-between group shadow-sm hover:border-cobalt hover:shadow-[4px_4px_0px_var(--cobalt)] transition-all duration-300"
                 >
                   <div>
                     <div className="flex items-start justify-between gap-3 mb-3">
                       <div className="flex items-center gap-2">
-                        <Code2 className="w-4 h-4 text-foreground flex-shrink-0" />
-                        <h4 className="font-heading font-extrabold text-base sm:text-lg text-foreground group-hover:underline">
+                        <Code2 className="w-4 h-4 text-foreground group-hover:text-cobalt transition-colors flex-shrink-0" />
+                        <h4 className="font-heading font-extrabold text-base sm:text-lg text-foreground group-hover:text-cobalt transition-colors">
                           {repo.name}
                         </h4>
                       </div>
-                      <ExternalLink className="w-4 h-4 text-muted group-hover:text-foreground transition-colors flex-shrink-0" />
+                      <ExternalLink className="w-4 h-4 text-muted group-hover:text-cobalt transition-colors flex-shrink-0" />
                     </div>
 
                     <p className="text-[14px] sm:text-[15px] text-muted leading-relaxed font-sans line-clamp-3 mb-5">

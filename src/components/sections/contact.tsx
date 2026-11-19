@@ -61,7 +61,8 @@ export function Contact() {
           {/* Left Column: Direct Editorial Info (5 cols) */}
           <div className="lg:col-span-5 space-y-8">
             <div>
-              <p className="font-mono text-xs uppercase tracking-widest text-muted mb-2 font-bold">
+              <p className="font-mono text-xs uppercase tracking-widest text-cobalt mb-2 font-bold flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-cobalt animate-pulse" />
                 Don&apos;t be shy
               </p>
               <h3 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-black text-foreground tracking-tight leading-none mb-6">
@@ -72,9 +73,9 @@ export function Contact() {
               </p>
               <a
                 href="mailto:rudrapahune@gmail.com"
-                className="editorial-btn-primary inline-flex items-center gap-2 px-6 py-3 text-sm font-bold min-h-[44px]"
+                className="editorial-btn-primary inline-flex items-center gap-2 px-6 py-3 text-sm font-bold min-h-[44px] hover:border-cobalt hover:shadow-[3px_3px_0px_var(--cobalt)] transition-all"
               >
-                <Mail className="w-4 h-4" />
+                <Mail className="w-4 h-4 text-cobalt" />
                 <span>rudrapahune@gmail.com</span>
               </a>
             </div>
@@ -90,13 +91,13 @@ export function Contact() {
                   href={siteConfig.links.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between py-2 border-b border-foreground/10 group hover:border-foreground transition-colors"
+                  className="flex items-center justify-between py-2 border-b border-foreground/10 group hover:border-cobalt transition-colors"
                 >
-                  <span className="flex items-center gap-2.5 font-bold text-foreground">
+                  <span className="flex items-center gap-2.5 font-bold text-foreground group-hover:text-cobalt transition-colors">
                     <Github className="w-4 h-4" />
                     GitHub
                   </span>
-                  <span className="text-xs text-muted group-hover:text-foreground flex items-center gap-1 transition-colors">
+                  <span className="text-xs text-muted group-hover:text-cobalt flex items-center gap-1 transition-colors">
                     @rudrapahune-dev <ArrowUpRight className="w-3.5 h-3.5" />
                   </span>
                 </a>
@@ -105,26 +106,26 @@ export function Contact() {
                   href={siteConfig.links.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between py-2 border-b border-foreground/10 group hover:border-foreground transition-colors"
+                  className="flex items-center justify-between py-2 border-b border-foreground/10 group hover:border-cobalt transition-colors"
                 >
-                  <span className="flex items-center gap-2.5 font-bold text-foreground">
+                  <span className="flex items-center gap-2.5 font-bold text-foreground group-hover:text-[#0077B5] transition-colors">
                     <Linkedin className="w-4 h-4" />
                     LinkedIn
                   </span>
-                  <span className="text-xs text-muted group-hover:text-foreground flex items-center gap-1 transition-colors">
+                  <span className="text-xs text-muted group-hover:text-[#0077B5] flex items-center gap-1 transition-colors">
                     Rudra Pahune <ArrowUpRight className="w-3.5 h-3.5" />
                   </span>
                 </a>
 
                 <a
                   href="mailto:rudrapahune@gmail.com"
-                  className="flex items-center justify-between py-2 border-b border-foreground/10 group hover:border-foreground transition-colors"
+                  className="flex items-center justify-between py-2 border-b border-foreground/10 group hover:border-cobalt transition-colors"
                 >
-                  <span className="flex items-center gap-2.5 font-bold text-foreground">
+                  <span className="flex items-center gap-2.5 font-bold text-foreground group-hover:text-cobalt transition-colors">
                     <Mail className="w-4 h-4" />
                     Email
                   </span>
-                  <span className="text-xs text-muted group-hover:text-foreground flex items-center gap-1 transition-colors">
+                  <span className="text-xs text-muted group-hover:text-cobalt flex items-center gap-1 transition-colors">
                     rudrapahune@gmail.com <ArrowUpRight className="w-3.5 h-3.5" />
                   </span>
                 </a>

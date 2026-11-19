@@ -60,7 +60,7 @@ export function Projects() {
             {/* Left Column: Title, Narrative, Tech (6 cols) */}
             <div className="lg:col-span-6 space-y-6">
               <div>
-                <span className="font-mono text-xs uppercase tracking-wider text-muted font-bold block mb-2">
+                <span className="font-mono text-xs uppercase tracking-wider text-cobalt font-bold block mb-2">
                   {featured.category}
                 </span>
                 <h3 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-foreground tracking-tight">
@@ -177,19 +177,19 @@ export function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.4 }}
-            className="editorial-card rounded-2xl p-6 sm:p-8 bg-surface border border-foreground flex flex-col justify-between group"
+            className="editorial-card rounded-2xl p-6 sm:p-8 bg-surface border border-foreground/30 hover:border-cobalt hover:shadow-[4px_4px_0px_var(--cobalt)] transition-all duration-200 flex flex-col justify-between group"
           >
             <div>
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-foreground/15 font-mono text-xs">
-                <span className="text-muted font-bold uppercase">System Architecture</span>
+                <span className="text-cobalt font-bold uppercase">System Architecture</span>
                 <span className="font-bold text-foreground">Autonomous AI</span>
               </div>
 
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="p-2 rounded-lg bg-foreground text-background">
+                <div className="p-2 rounded-lg bg-foreground text-background group-hover:bg-cobalt group-hover:text-white transition-colors">
                   <Cpu className="w-4 h-4" />
                 </div>
-                <h4 className="font-heading font-black text-2xl text-foreground group-hover:underline underline-offset-4 transition-all">
+                <h4 className="font-heading font-black text-2xl text-foreground group-hover:text-cobalt transition-colors">
                   Multi-Agent Coordination Engine
                 </h4>
               </div>
@@ -201,11 +201,11 @@ export function Projects() {
 
             <div className="pt-4 border-t border-foreground/15 flex items-center justify-between">
               <div className="flex flex-wrap gap-1.5 font-mono text-xs">
-                <span className="px-2 py-0.5 rounded bg-black/5 text-foreground font-semibold">Autonomous Loops</span>
-                <span className="px-2 py-0.5 rounded bg-black/5 text-foreground font-semibold">Tool Calling</span>
-                <span className="px-2 py-0.5 rounded bg-black/5 text-foreground font-semibold">TypeScript</span>
+                <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/10 text-foreground font-semibold">Autonomous Loops</span>
+                <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/10 text-foreground font-semibold">Tool Calling</span>
+                <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/10 text-foreground font-semibold">TypeScript</span>
               </div>
-              <ArrowUpRight className="w-4 h-4 text-foreground group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              <ArrowUpRight className="w-4 h-4 text-foreground group-hover:text-cobalt group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
             </div>
           </motion.div>
 
@@ -215,19 +215,19 @@ export function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="editorial-card rounded-2xl p-6 sm:p-8 bg-surface border border-foreground flex flex-col justify-between group"
+            className="editorial-card rounded-2xl p-6 sm:p-8 bg-surface border border-foreground/30 hover:border-cobalt hover:shadow-[4px_4px_0px_var(--cobalt)] transition-all duration-200 flex flex-col justify-between group"
           >
             <div>
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-foreground/15 font-mono text-xs">
-                <span className="text-muted font-bold uppercase">Backend Blueprint</span>
+                <span className="text-cobalt font-bold uppercase">Backend Blueprint</span>
                 <span className="font-bold text-foreground">Distributed Messaging</span>
               </div>
 
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="p-2 rounded-lg bg-foreground text-background">
+                <div className="p-2 rounded-lg bg-foreground text-background group-hover:bg-cobalt group-hover:text-white transition-colors">
                   <Server className="w-4 h-4" />
                 </div>
-                <h4 className="font-heading font-black text-2xl text-foreground group-hover:underline underline-offset-4 transition-all">
+                <h4 className="font-heading font-black text-2xl text-foreground group-hover:text-cobalt transition-colors">
                   High-Throughput Event Broker
                 </h4>
               </div>
@@ -239,11 +239,11 @@ export function Projects() {
 
             <div className="pt-4 border-t border-foreground/15 flex items-center justify-between">
               <div className="flex flex-wrap gap-1.5 font-mono text-xs">
-                <span className="px-2 py-0.5 rounded bg-black/5 text-foreground font-semibold">Node.js</span>
-                <span className="px-2 py-0.5 rounded bg-black/5 text-foreground font-semibold">PostgreSQL</span>
-                <span className="px-2 py-0.5 rounded bg-black/5 text-foreground font-semibold">Idempotency</span>
+                <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/10 text-foreground font-semibold">Node.js</span>
+                <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/10 text-foreground font-semibold">PostgreSQL</span>
+                <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/10 text-foreground font-semibold">Idempotency</span>
               </div>
-              <ArrowUpRight className="w-4 h-4 text-foreground group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              <ArrowUpRight className="w-4 h-4 text-foreground group-hover:text-cobalt group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
             </div>
           </motion.div>
         </div>
